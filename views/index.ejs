@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ServerList+</title>
+
+    <!-- Site Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Site JS -->
+    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <% if (config.site.analytics.enabled) { %>
+        <%= config.site.analytics.tag %>
+    <% } %>
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand font-nunito-sans-bold">ServerList+</a>
+            <a class="ms-auto me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
+            <a class="me-2 nav-link nav-icon bi bi-discord" href="https://discord.com/invite/5fs5bzxk4t"></a>
+            <a class="nav-link nav-icon bi bi-gear-fill" id="navbarSettingsButton"></a>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-sm-2 pt-3 ps-4">
+            <!-- Region Selection -->
+            <h5 class="font-nunito-sans-bold">Region: </h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="region" id="America" checked>
+                <label class="form-check-label" for="America">America</label> <i id="countAmerica">(-)</i>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="region" id="Europe">
+                <label class="form-check-label" for="Europe">Europe</label> <i id="countEurope">(-)</i>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="region" id="Asia">
+                <label class="form-check-label" for="Asia">Asia</label> <i id="countAsia">(-)</i>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="region" id="World" style="display: none">
+                <label class="form-check-label" for="World"><b>Total</b></label> <i id="countTotal">(-)</i>
+            </div>
+            <!-- Mode Selection -->
+            <h5 class="font-nunito-sans-bold">Mode:</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="teamMode" checked>
+                <label class="form-check-label" for="teamMode"><i class="bi bi-people-fill"></i> Team</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="survivalMode" checked>
+                <label class="form-check-label" for="survivalMode"><i class="bi bi-bullseye"></i> Survival</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="deathmatchMode" checked>
+                <label class="form-check-label" for="deathmatchMode"><i class="bi bi-trophy-fill"></i>
+                    Deathmatch</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="moddingMode" checked>
+                <label class="form-check-label" for="moddingMode"><i class="bi bi-code-slash"></i> Modding</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invasionMode">
+                <label class="form-check-label" for="invasionMode"><i class="bi bi-border"></i> Invasion</label>
+            </div>
+            <% if (config.site.mode !== "standalone") { %>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="customMode">
+                    <label class="form-check-label" for="customMode"><i class="bi bi-wrench"></i> Custom</label>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+</body>
+</html>

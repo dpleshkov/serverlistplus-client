@@ -1,0 +1,15 @@
+{
+  "server": {
+    "port": 3000,
+    "logging": true,
+    "production": false
+  },
+  "site": {
+    "analytics": {
+      "enabled": false,
+      "tag": ""
+    },
+    "mode": "standalone",
+    "api-provider": "wss://example.com:1234"
+  }
+}

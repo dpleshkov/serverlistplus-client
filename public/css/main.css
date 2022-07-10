@@ -1,0 +1,20 @@
+/* Fonts */
+@font-face {
+    font-family: "Nunito Sans Bold";
+    src: url("/fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf");
+    font-display: swap;
+}
+
+.font-nunito-sans-bold {
+    font-family: "Nunito Sans Bold", sans-serif;
+}
+
+/* Other Styling */
+.nav-icon {
+    font-size: 1.25rem;
+}
+
+.nav-link:hover {
+    color: #555555;
+    cursor: pointer;
+}
