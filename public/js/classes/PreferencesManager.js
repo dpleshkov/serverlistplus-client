@@ -1,0 +1,91 @@
+class PreferencesManager {
+    constructor() {
+        const self = this;
+
+        self.preferences = self.loadPreferences();
+        self.renderPreferences(self.preferences);
+
+        /* Mode Select Bindings */
+        for (let mode of ["team", "survival", "deathmatch", "modding", "custom", "invasion"]) {
+            document.getElementById(`${mode}Mode`).addEventListener("change", () => {
+                if (document.getElementById(`${mode}Mode`).checked) {
+                    if (!self.preferences.modes.includes(mode)) self.preferences.modes.push(mode);
+                } else {
+                    if (self.preferences.modes.includes(mode)) self.preferences.modes.splice(self.preferences.modes.indexOf(mode), 1);
+                }
+                self.savePreferences(self.preferences);
+            });
+        }
+
+        /* Region Select Bindings */
+        for (let region of ["America", "Europe", "Asia"]) {
+            document.getElementById(region).addEventListener("change", () => {
+                self.preferences.region = document.querySelector(`input[name="region"]:checked`).id;
+                self.savePreferences(self.preferences);
+            });
+        }
+
+        /* Copy Full Link Binding */
+        document.getElementById("preferenceCopyFullLink").addEventListener("change", () => {
+            self.preferences.copyFullLinks = document.getElementById("preferenceCopyFullLink").checked;
+            self.savePreferences(self.preferences);
+        });
+
+        /* Theme Select Binding */
+        document.getElementById("preferenceTheme").addEventListener("change", () => {
+            self.preferences.theme = document.getElementById("preferenceTheme").value;
+            document.getElementById("themeStylesheet").setAttribute("href", self.preferences.theme);
+            self.savePreferences(self.preferences);
+        });
+    }
+
+    loadPreferences() {
+        let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
+        if (!storedPreferences) {
+            let theme = "/css/themes/default_light.css";
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                theme = "/css/themes/default_dark.css";
+            }
+            let preferences = {
+                region: "America",
+                modes: ["team", "survival", "deathmatch", "modding"],
+                theme: theme,
+                copyFullLinks: false
+            }
+            window.localStorage.setItem("preferences", JSON.stringify(preferences));
+            return preferences;
+        }
+        return storedPreferences;
+    }
+
+    savePreferences(preferences) {
+        window.localStorage.setItem("preferences", JSON.stringify(preferences));
+    }
+
+    renderPreferences(preferences) {
+        /* Mode */
+        let modeInputs = {
+            "team": document.getElementById("teamMode"),
+            "survival": document.getElementById("survivalMode"),
+            "modding": document.getElementById("moddingMode"),
+            "deathmatch": document.getElementById("deathmatchMode"),
+            "invasion": document.getElementById("invasionMode"),
+            "custom": document.getElementById("customMode")
+        }
+
+        for (let mode of ["team", "survival", "modding", "deathmatch", "invasion", "custom"]) {
+            modeInputs[mode].checked = preferences.modes.includes(mode);
+        }
+
+        /* Region */
+        document.getElementById(preferences.region).checked = true;
+
+        /* Copy Full Links */
+        document.getElementById("preferenceCopyFullLink").checked = preferences.copyFullLinks;
+
+        /* Theme */
+        document.getElementById("preferenceTheme").value = preferences.theme;
+        document.getElementById("themeStylesheet").setAttribute("href", preferences.theme);
+
+    }
+}

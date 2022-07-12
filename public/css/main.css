@@ -9,7 +9,28 @@
     font-family: "Nunito Sans Bold", sans-serif;
 }
 
-/* Other Styling */
+@font-face {
+    font-family: "Nunito Sans";
+    src: url("/fonts/Nunito_Sans/NunitoSans-Regular.ttf");
+    font-display: swap;
+}
+
+.font-nunito-sans {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* Text Styling */
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, b {
+    font-family: "Nunito Sans Bold", sans-serif;
+}
+
+/* Navbar Styling */
+
 .nav-icon {
     font-size: 1.25rem;
 }
@@ -17,4 +38,22 @@
 .nav-link:hover {
     color: #555555;
     cursor: pointer;
+}
+
+/* System List Styling */
+
+.system-list-item:hover {
+    border-color: red;
+    cursor: pointer;
+}
+
+/* System Info Styling */
+
+#systemCopyLink {
+    min-width: 3rem;
+    max-width: 3rem;
+}
+
+.system-report-card:hover {
+    border-color: red;
 }

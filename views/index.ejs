@@ -6,59 +6,76 @@
     <!-- Site Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="dark light">
 
     <!-- Site CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/themes/default_light.css" id="themeStylesheet">
 
-    <!-- Site JS -->
+    <!-- Site JS Libraries -->
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/classes/PreferencesManager.js"></script>
     <% if (config.site.analytics.enabled) { %>
         <%= config.site.analytics.tag %>
     <% } %>
 
 </head>
 <body>
+<%- include("./index/settings") %>
 <div class="container">
+    <!-- Navbar -->
     <nav class="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand font-nunito-sans-bold">ServerList+</a>
+        <div class="container-fluid px-0">
+            <a class="navbar-brand">
+                <b>ServerList+</b>
+                <% if (config.site.mode === "standalone") { %>
+                    <span>Lite</span>
+                <% } %>
+            </a>
             <a class="ms-auto me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
             <a class="me-2 nav-link nav-icon bi bi-discord" href="https://discord.com/invite/5fs5bzxk4t"></a>
             <a class="nav-link nav-icon bi bi-gear-fill" id="navbarSettingsButton"></a>
         </div>
     </nav>
     <div class="row">
-        <div class="col-sm-2 pt-3 ps-4">
+        <!-- View Options -->
+        <div class="col-sm-2 pt-3">
             <!-- Region Selection -->
-            <h5 class="font-nunito-sans-bold">Region: </h5>
+            <h5>Region: </h5>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="region" id="America" checked>
-                <label class="form-check-label" for="America">America</label> <i id="countAmerica">(-)</i>
+                <label class="form-check-label" for="America">America</label>
+                <i class="bi bi-person-fill"></i>
+                <span id="countAmerica">69</span>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="region" id="Europe">
-                <label class="form-check-label" for="Europe">Europe</label> <i id="countEurope">(-)</i>
+                <label class="form-check-label" for="Europe">Europe</label>
+                <i class="bi bi-person-fill"></i>
+                <span id="countEurope">69</span>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="region" id="Asia">
-                <label class="form-check-label" for="Asia">Asia</label> <i id="countAsia">(-)</i>
+                <label class="form-check-label" for="Asia">Asia</label>
+                <i class="bi bi-person-fill"></i>
+                <span id="countAsia">69</span>
             </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="region" id="World" style="display: none">
-                <label class="form-check-label" for="World"><b>Total</b></label> <i id="countTotal">(-)</i>
+            <div class="form-check">
+                <input class="form-check-input d-none" type="radio" name="region" id="World">
+                <label class="form-check-label" for="World"><b>Total</b></label>
+                <i class="bi bi-person-fill"></i>
+                <span id="countTotal">420</span>
             </div>
             <!-- Mode Selection -->
-            <h5 class="font-nunito-sans-bold">Mode:</h5>
+            <h5 class="mt-3">Mode:</h5>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="teamMode" checked>
-                <label class="form-check-label" for="teamMode"><i class="bi bi-people-fill"></i> Team</label>
+                <label class="form-check-label" for="teamMode"><i class="bi bi-people-fill"></i> Team Mode</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="survivalMode" checked>
-                <label class="form-check-label" for="survivalMode"><i class="bi bi-bullseye"></i> Survival</label>
+                <label class="form-check-label" for="survivalMode"><i class="bi bi-bullseye"></i> Survival Mode</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="deathmatchMode" checked>
@@ -73,14 +90,52 @@
                 <input class="form-check-input" type="checkbox" value="" id="invasionMode">
                 <label class="form-check-label" for="invasionMode"><i class="bi bi-border"></i> Invasion</label>
             </div>
-            <% if (config.site.mode !== "standalone") { %>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="customMode">
-                    <label class="form-check-label" for="customMode"><i class="bi bi-wrench"></i> Custom</label>
+            <div class="form-check <%= config.site.mode === "standalone" ? "d-none" : "" %>">
+                <input class="form-check-input" type="checkbox" value="" id="customMode">
+                <label class="form-check-label" for="customMode"><i class="bi bi-wrench"></i> Custom</label>
+            </div>
+            <!-- Notification Option -->
+            <h5 class="mt-3">Options:</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="newServerAlert">
+                <label class="form-check-label" for="newServerAlert"><i class="bi bi-bell-fill"></i> New Server
+                    Alert</label>
+            </div>
+        </div>
+        <!-- System List -->
+        <div class="col-sm-5">
+            <div class="card system-list-item">
+                <div class="card-body">
+                    <h3 class="mb-0">Trappist-1 <span class="float-end">69 min</span></h3>
+                    <span><i class="bi bi-people-fill"></i> Team Mode <span class="float-end">70 players</span></span>
                 </div>
-            <% } %>
+            </div>
+        </div>
+        <!-- System Info -->
+        <div class="col-sm-5">
+            <div class="card system-report-card">
+                <div class="card-body">
+                    <h3 class="text-center mb-0">Trappist-1</h3>
+                    <b class="float-start">Mode</b><span class="float-end">Team Mode</span><br>
+                    <b class="float-start">Region</b><span class="float-end">America</span><br>
+                    <b class="float-start">Age</b><span class="float-end">69 min</span><br>
+                    <b class="float-start">ID</b><span class="float-end">#1234</span><br>
+                    <b class="float-start">Criminality</b><span class="float-end">4</span><br>
+                    <b class="float-start">Player Count</b><span class="float-end">70</span><br>
+                    <div class="btn-group w-100 mt-3">
+                        <button class="btn btn-outline-danger" id="systemCopyLink"><i
+                                    class="bi bi-clipboard" id="clipboard"></i></button>
+                        <a class="w-90 btn btn-outline-danger" id="systemReportLink">Join Game</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Site JS Scripts -->
+<script type="text/javascript" src="/js/ui.js"></script>
+<script type="text/javascript" src="/js/serverList.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,23 @@
+body {
+    background-color: #121212;
+    color: white;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: white;
+}
+
+.card {
+    background: transparent;
+    border-color: white;
+}
+
+.nav-link:hover {
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.modal-content {
+    background: transparent;
+    border-color: white;
+}
