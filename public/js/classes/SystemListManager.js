@@ -75,21 +75,23 @@ class SystemListManager {
                 self._sort();
 
                 /* Notify of new system is user has it enabled */
-                (async() => {
-                    let permission = Notification.permission;
-                    if (["denied", "default"].includes(permission)) {
-                        return;
-                    }
-                    let notification = new Notification('New Server Alert!');
-                    document.addEventListener('visibilitychange', function() {
-                        if (document.visibilityState === 'visible') {
-                            notification.close();
+                if (document.getElementById("newServerAlert").checked) {
+                    (async() => {
+                        let permission = Notification.permission;
+                        if (["denied", "default"].includes(permission)) {
+                            return;
                         }
-                    });
-                })().then();
-                let permission = Notification.permission;
-                if (permission === "denied" || permission === "default") {
-                    Notification.requestPermission().then();
+                        let notification = new Notification('New Server Alert!');
+                        document.addEventListener('visibilitychange', function() {
+                            if (document.visibilityState === 'visible') {
+                                notification.close();
+                            }
+                        });
+                    })().then();
+                    let permission = Notification.permission;
+                    if (permission === "denied" || permission === "default") {
+                        Notification.requestPermission().then();
+                    }
                 }
             }
         }
