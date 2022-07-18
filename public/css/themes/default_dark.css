@@ -1,6 +1,7 @@
 body {
-    background-color: #121212;
+    background-color: #202020;
     color: white;
+    color-scheme: dark;
 }
 
 .navbar-brand, .navbar-brand:hover {
@@ -18,6 +19,20 @@ body {
 }
 
 .modal-content {
-    background: transparent;
+    background: #202020;
     border-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 0.25rem solid white;
 }

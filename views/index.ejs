@@ -16,6 +16,10 @@
     <!-- Site JS Libraries -->
     <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/classes/PreferencesManager.js"></script>
+    <script type="text/javascript" src="/js/classes/SimStatusListProvider.js"></script>
+    <script type="text/javascript" src="/js/translation.js"></script>
+    <script type="text/javascript" src="/js/classes/SystemListManager.js"></script>
+    <script type="text/javascript" src="/js/classes/LiteSystemReportManager.js"></script>
     <% if (config.site.analytics.enabled) { %>
         <%= config.site.analytics.tag %>
     <% } %>
@@ -25,7 +29,7 @@
 <%- include("./index/settings") %>
 <div class="container">
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container-fluid px-0">
             <a class="navbar-brand">
                 <b>ServerList+</b>
@@ -40,7 +44,7 @@
     </nav>
     <div class="row">
         <!-- View Options -->
-        <div class="col-sm-2 pt-3">
+        <div class="col-sm-2 pt-3" id="viewOptions">
             <!-- Region Selection -->
             <h5>Region: </h5>
             <div class="form-check">
@@ -103,25 +107,19 @@
             </div>
         </div>
         <!-- System List -->
-        <div class="col-sm-5">
-            <div class="card system-list-item">
-                <div class="card-body">
-                    <h3 class="mb-0">Trappist-1 <span class="float-end">69 min</span></h3>
-                    <span><i class="bi bi-people-fill"></i> Team Mode <span class="float-end">70 players</span></span>
-                </div>
-            </div>
+        <div class="col-sm-5" id="systemsList">
         </div>
         <!-- System Info -->
-        <div class="col-sm-5">
+        <div class="col-sm-5" id="systemReport">
             <div class="card system-report-card">
                 <div class="card-body">
-                    <h3 class="text-center mb-0">Trappist-1</h3>
-                    <b class="float-start">Mode</b><span class="float-end">Team Mode</span><br>
-                    <b class="float-start">Region</b><span class="float-end">America</span><br>
-                    <b class="float-start">Age</b><span class="float-end">69 min</span><br>
-                    <b class="float-start">ID</b><span class="float-end">#1234</span><br>
-                    <b class="float-start">Criminality</b><span class="float-end">4</span><br>
-                    <b class="float-start">Player Count</b><span class="float-end">70</span><br>
+                    <h3 class="text-center mb-0" id="SR_Name">Trappist-1</h3>
+                    <b class="float-start">Mode</b><span class="float-end" id="SR_Mode">Team Mode</span><br>
+                    <b class="float-start">Region</b><span class="float-end" id="SR_Region">America</span><br>
+                    <b class="float-start">Age</b><span class="float-end" id="SR_Time">69 min</span><br>
+                    <b class="float-start">ID</b><span class="float-end" id="SR_ID">#1234</span><br>
+                    <b class="float-start">Criminality</b><span class="float-end" id="SR_Criminality">4</span><br>
+                    <b class="float-start">Player Count</b><span class="float-end" id="SR_PlayerCount">70</span><br>
                     <div class="btn-group w-100 mt-3">
                         <button class="btn btn-outline-danger" id="systemCopyLink"><i
                                     class="bi bi-clipboard" id="clipboard"></i></button>

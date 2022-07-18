@@ -8,8 +8,24 @@ document.getElementById("navbarSettingsButton").addEventListener("click", () => 
     settingsModal.show();
 });
 
-/* Preferences */
+/* Responsive Scroll Height Setting */
+let _scrollify = function() {
+    let navbarHeight = document.getElementById("navbar").offsetHeight;
+    let remainingSpace = window.innerHeight - navbarHeight;
+    document.getElementById("systemsList").style.maxHeight = `${remainingSpace}px`;
+    document.getElementById("systemReport").style.maxHeight = `${remainingSpace}px`;
+    document.getElementById("viewOptions").style.maxHeight = `${remainingSpace}px`;
+}
 
-let preferencesManager = new PreferencesManager();
+_scrollify();
+window.addEventListener("resize", _scrollify);
 
+/* Hide System Report */
+document.getElementById("systemReport").style.display = "none";
 
+/* New Server Alert */
+document.getElementById("newServerAlert").addEventListener("change", () => {
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission().then();
+    }
+});

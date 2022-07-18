@@ -5,6 +5,8 @@ class PreferencesManager {
         self.preferences = self.loadPreferences();
         self.renderPreferences(self.preferences);
 
+        self.onchange = function() {};
+
         /* Mode Select Bindings */
         for (let mode of ["team", "survival", "deathmatch", "modding", "custom", "invasion"]) {
             document.getElementById(`${mode}Mode`).addEventListener("change", () => {
@@ -59,6 +61,9 @@ class PreferencesManager {
     }
 
     savePreferences(preferences) {
+        const self = this;
+
+        self.onchange(preferences);
         window.localStorage.setItem("preferences", JSON.stringify(preferences));
     }
 
