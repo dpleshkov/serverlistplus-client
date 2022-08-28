@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ServerList+</title>
-
     <!-- Site Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Embed Metadata -->
+    <title>ServerList+ <% if (config.site.mode === "standalone") { %>Lite<% } %></title>
 
     <!-- Site CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -19,14 +20,30 @@
     <script type="text/javascript" src="/js/classes/SimStatusListProvider.js"></script>
     <script type="text/javascript" src="/js/translation.js"></script>
     <script type="text/javascript" src="/js/classes/SystemListManager.js"></script>
-    <script type="text/javascript" src="/js/classes/LiteSystemReportManager.js"></script>
+    <script type="text/javascript" src="/js/classes/SystemReportManager.js"></script>
+    <% if (config.site.mode === "live") { %>
+        <script type="text/javascript" src="/js/classes/Spectator.js"></script>
+    <% } %>
+
     <% if (config.site.analytics.enabled) { %>
         <%= config.site.analytics.tag %>
     <% } %>
 
+    <!-- Site Mode -->
+    <script type="text/javascript">
+        window._SITEMODE = "<%= config.site.mode %>";
+        <% if (config.site.mode === "live") { %>
+            window._LIVEAPIURL = "<%= config.site["live-api-provider"] %>";
+            window._STATICAPIURL = "<%= config.site["static-api-provider"] %>";
+        <% } %>
+    </script>
+
 </head>
 <body>
 <%- include("./index/settings") %>
+<% if (config.site.mode === "live") { %>
+    <%- include("./index/spectatorModal") %>
+<% } %>
 <div class="container">
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
@@ -35,6 +52,8 @@
                 <b>ServerList+</b>
                 <% if (config.site.mode === "standalone") { %>
                     <span>Lite</span>
+                <% } else if (config.site.mode === "live") { %>
+                    <span>v2</span>
                 <% } %>
             </a>
             <a class="ms-auto me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
@@ -121,9 +140,13 @@
                     <b class="float-start">Criminality</b><span class="float-end" id="SR_Criminality">4</span><br>
                     <b class="float-start">Player Count</b><span class="float-end" id="SR_PlayerCount">70</span><br>
                     <div class="btn-group w-100 mt-3">
-                        <button class="btn btn-outline-danger" id="systemCopyLink"><i
-                                    class="bi bi-clipboard" id="clipboard"></i></button>
-                        <a class="w-90 btn btn-outline-danger" id="systemReportLink">Join Game</a>
+                        <button class="btn btn-outline-danger" id="systemCopyLink">
+                            <i class="bi bi-clipboard" id="clipboard"></i>
+                        </button>
+                        <a class="w-90 btn btn-outline-danger rounded-end" id="systemReportLink">Join Game</a>
+                        <button class="btn btn-outline-danger" id="systemSpectateButton">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
                     </div>
                 </div>
             </div>

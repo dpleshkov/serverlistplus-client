@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
     });
 });
 
+if (config.server.production) process.env.NODE_ENV = "production";
+
 app.listen(port, () => {
     console.log(`Site listening on http://localhost:${port}`);
 });

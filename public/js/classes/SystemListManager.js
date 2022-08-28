@@ -11,14 +11,6 @@ class SystemListManager {
         self.systemListElement = document.getElementById("systemsList");
     }
 
-    _sort() {
-        const self = this;
-
-        [...self.systemListElement.children].sort((a, b) => {
-            return self.systemsById[a.dataset.system].time > self.systemsById[b.dataset.system].time ? 1 : -1;
-        }).forEach(node=>self.systemListElement.appendChild(node));
-    }
-
     getCardHTML(system) {
         let modeText = system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];
 
@@ -74,7 +66,7 @@ class SystemListManager {
 
                 self._sort();
 
-                /* Notify of new system is user has it enabled */
+                /* Notify of new system if user has it enabled */
                 if (document.getElementById("newServerAlert").checked) {
                     (async() => {
                         let permission = Notification.permission;
@@ -105,4 +97,11 @@ class SystemListManager {
 
     }
 
+    _sort() {
+        const self = this;
+
+        [...self.systemListElement.children].sort((a, b) => {
+            return self.systemsById[a.dataset.system].time > self.systemsById[b.dataset.system].time ? 1 : -1;
+        }).forEach(node=>self.systemListElement.appendChild(node));
+    }
 }

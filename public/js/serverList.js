@@ -1,10 +1,9 @@
-/* Preferences */
 
 let preferencesManager = new PreferencesManager();
 
 let systemListProvider = new SimStatusListProvider();
 
-let systemReportManager = new LiteSystemReportManager(preferencesManager);
+let systemReportManager = new SystemReportManager(preferencesManager);
 
 let systemListManager = new SystemListManager(preferencesManager, systemListProvider, systemReportManager);
 

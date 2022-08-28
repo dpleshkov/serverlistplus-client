@@ -2,6 +2,13 @@ body {
     color-scheme: light;
 }
 
+:root {
+    --background-color: white;
+    --spectate-background-color: white;
+    --spectate-asteroids-color: black;
+    --text-color: black;
+}
+
 ::-webkit-scrollbar {
     width: 0.1rem;
 }

@@ -1,4 +1,4 @@
-class LiteSystemReportManager {
+class SystemReportManager {
     constructor(preferencesManager) {
         const self = this;
 
@@ -32,6 +32,21 @@ class LiteSystemReportManager {
         document.getElementById("systemReportLink").setAttribute("href", systemURL);
 
         document.getElementById("systemReport").style.display = "";
+
+        system.mod_id = system.mod_id ?? "";
+
+        if (window._SITEMODE === "live" && (system.mode === "team" || (system.mode === "modding" && ["useries", "nauticseries", "alienintrusion"].includes(system.mod_id)))) {
+            document.getElementById("systemSpectateButton").style.display = "";
+            document.getElementById("systemReportLink").classList.remove("rounded-end");
+
+            document.getElementById("systemSpectateButton").onclick = () => {
+                if (window.activeSpectator !== undefined) window.activeSpectator.destroy();
+                window.activeSpectator = new Spectator(system.id);
+            }
+        } else {
+            document.getElementById("systemSpectateButton").style.display = "none";
+            document.getElementById("systemReportLink").classList.add("rounded-end");
+        }
     }
 
     _copyText(text) {

@@ -1,6 +1,4 @@
 body {
-    background-color: #202020;
-    color: white;
     color-scheme: dark;
 }
 
@@ -19,7 +17,7 @@ body {
 }
 
 .modal-content {
-    background: #202020;
+    background: var(--background-color);
     border-color: white;
 }
 
@@ -35,4 +33,11 @@ body {
     background-color: white;
     border-radius: 0.25rem;
     border: 0.25rem solid white;
+}
+
+:root {
+    --background-color: #202020;
+    --spectate-background-color: #202020;
+    --spectate-asteroids-color: white;
+    --text-color: white;
 }
