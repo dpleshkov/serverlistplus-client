@@ -29,6 +29,10 @@
         <%= config.site.analytics.tag %>
     <% } %>
 
+    <script type="text/javascript" src="/js/lib/mapGen.js"></script>
+    <script type="text/javascript" src="/js/lib/renderingUtils.js"></script>
+    <script type="text/javascript" src="/js/lib/ecpIcon.js"></script>
+
     <!-- Site Mode -->
     <script type="text/javascript">
         window._SITEMODE = "<%= config.site.mode %>";
@@ -152,6 +156,11 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Force Font Preload Workaround -->
+<div class="font-preload">
+    <span style="font-family: SBGlyphs;"></span>
 </div>
 
 <!-- Site JS Scripts -->

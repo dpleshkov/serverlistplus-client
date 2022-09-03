@@ -5,6 +5,13 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'SBGlyphs';
+    src: url('https://starblast.data.neuronality.com/fonts/starblast-glyphs.ttf?v=1');
+    font-weight: normal;
+    font-style: normal
+}
+
 .font-nunito-sans-bold {
     font-family: "Nunito Sans Bold", sans-serif;
 }
@@ -68,5 +75,10 @@ h1, h2, h3, h4, h5, b {
 
 #settingsModal, #spectatorModal {
     overflow-y: hidden;
+}
+
+.analysis-col {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 

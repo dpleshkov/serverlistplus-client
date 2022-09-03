@@ -6,6 +6,10 @@
                     <label class="form-check-label" for="preferenceCopyFullLink"><b>Use Full Links</b></label>
                     <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCopyFullLink">
                 </div>
+                <div class="form-check ps-0 <% if (config.site.mode === "standalone") { %> d-none <% } %>">
+                    <label class="form-check-label" for="preferenceCenterMapAsteroids"><b>Center Map on Asteroid Field</b></label>
+                    <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCenterMapAsteroids">
+                </div>
                 <label for="preferenceTheme" class="float-start pt-1"><b>Theme</b></label>
                 <select id="preferenceTheme" class="form-select-sm float-end">
                     <option value="/css/themes/default_light.css">Light&nbsp</option>

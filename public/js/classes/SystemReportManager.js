@@ -35,6 +35,8 @@ class SystemReportManager {
 
         system.mod_id = system.mod_id ?? "";
 
+        // Check if system mode supports live view
+
         if (window._SITEMODE === "live" && (system.mode === "team" || (system.mode === "modding" && ["useries", "nauticseries", "alienintrusion"].includes(system.mod_id)))) {
             document.getElementById("systemSpectateButton").style.display = "";
             document.getElementById("systemReportLink").classList.remove("rounded-end");
@@ -42,6 +44,7 @@ class SystemReportManager {
             document.getElementById("systemSpectateButton").onclick = () => {
                 if (window.activeSpectator !== undefined) window.activeSpectator.destroy();
                 window.activeSpectator = new Spectator(system.id);
+                Spectator.show();
             }
         } else {
             document.getElementById("systemSpectateButton").style.display = "none";

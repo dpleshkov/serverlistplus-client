@@ -33,6 +33,12 @@ class PreferencesManager {
             self.savePreferences(self.preferences);
         });
 
+        /* Center Asteroid Map Binding */
+        document.getElementById("preferenceCenterMapAsteroids").addEventListener("change", () => {
+            self.preferences.centerMapOnAsteroids = document.getElementById("preferenceCenterMapAsteroids").checked;
+            self.savePreferences(self.preferences);
+        });
+
         /* Theme Select Binding */
         document.getElementById("preferenceTheme").addEventListener("change", () => {
             self.preferences.theme = document.getElementById("preferenceTheme").value;
@@ -52,7 +58,8 @@ class PreferencesManager {
                 region: "America",
                 modes: ["team", "survival", "deathmatch", "modding"],
                 theme: theme,
-                copyFullLinks: false
+                copyFullLinks: false,
+                centerMapOnAsteroids: false
             }
             window.localStorage.setItem("preferences", JSON.stringify(preferences));
             return preferences;
@@ -87,6 +94,9 @@ class PreferencesManager {
 
         /* Copy Full Links */
         document.getElementById("preferenceCopyFullLink").checked = preferences.copyFullLinks;
+
+        /* Center Map On Asteroids */
+        document.getElementById("preferenceCenterMapAsteroids").checked = preferences.centerMapOnAsteroids;
 
         /* Theme */
         document.getElementById("preferenceTheme").value = preferences.theme;
