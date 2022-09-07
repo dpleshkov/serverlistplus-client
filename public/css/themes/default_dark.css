@@ -39,5 +39,6 @@ body {
     --background-color: #202020;
     --spectate-background-color: #202020;
     --spectate-asteroids-color: white;
+    --ship-icons-filter: "";
     --text-color: white;
 }

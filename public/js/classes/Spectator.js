@@ -66,7 +66,7 @@ class Spectator {
 
         self.render();
 
-        // self.renderScores();
+        self.renderScores();
     }
 
     async handleBinaryMessage(message) {
@@ -139,7 +139,7 @@ class Spectator {
         self.renderLeaderBoard().then(() => {
             setTimeout(() => {
                 self.renderScores();
-            }, 1000);
+            }, 250);
         })
     }
 
@@ -149,7 +149,7 @@ class Spectator {
         if (self.destroyed) return;
 
         self.renderMap();
-        self.renderLeaderBoard().then();
+        //self.renderLeaderBoard().then();
 
         requestAnimationFrame(() => {
             self.render();
@@ -242,16 +242,21 @@ class Spectator {
             for (let player of players) {
                 let doImageFilter = false;
                 let filter;
-                let badgeURI;
-                let showBadge = false;
+
+                let firstSpan = document.createElement("span");
+
                 if (player.profile.custom) {
                     let rgb = hsv2rgb(player.profile.hue, 0.8, 0.8);
                     filter = new Solver(new Color(rgb[0]*255, rgb[1]*255, rgb[2]*255)).solve().filter;
                     doImageFilter = true;
 
                     if (player.profile.custom.badge !== "blank") {
-                        badgeURI = await getECPIcon(player.profile.custom);
-                        showBadge = true;
+                        (() => {
+                            return new Promise(async(resolve) => {
+                                let badgeURI = await getECPIcon(player.profile.custom);
+                                firstSpan.innerHTML = `<img src=${badgeURI} style="height: 0.65rem; width:1.3rem; margin-bottom: 0.1rem;"> ` + firstSpan.innerHTML;
+                            })
+                        })().then();
                     }
 
                 }
@@ -260,17 +265,15 @@ class Spectator {
                 if (displayShips && doImageFilter) {
                     image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; ${filter}" src="/img/ships/${shipFolder}/${player.ship}.png" alt="" class="ship-image">`;
                 } else if (displayShips) {
-                    image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem;" src="/img/ships/${shipFolder}/${player.ship}.png" alt="" class="ship-image">`;
+                    image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; filter: ${getComputedStyle(document.documentElement).getPropertyValue("--ship-icons-filter")}" src="/img/ships/${shipFolder}/${player.ship}.png" alt="" class="ship-image">`;
                 } else if (!displayShips && doImageFilter) {
                     image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; ${filter}" src="/img/ships/vanilla/000.png" alt="" class="ship-image">`;
                 }
 
-                let firstSpan = document.createElement("span");
                 firstSpan.setAttribute("style", "font-size: 0.65rem; overflow: hidden; white-space: nowrap;");
                 firstSpan.setAttribute("class", "float-start");
                 //firstSpan.innerHTML += image;
                 firstSpan.innerHTML += `&nbsp`;
-                if (doImageFilter && showBadge) firstSpan.innerHTML += `<img src=${badgeURI} style="height: 0.65rem; width:1.3rem; margin-bottom: 0.1rem;"> `;
                 firstSpan.innerHTML += player.profile.player_name.replace("<", "&lt").replace(">", "&gt");
                 column.appendChild(firstSpan);
 
