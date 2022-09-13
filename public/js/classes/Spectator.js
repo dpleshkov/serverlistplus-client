@@ -139,7 +139,7 @@ class Spectator {
         self.renderLeaderBoard().then(() => {
             setTimeout(() => {
                 self.renderScores();
-            }, 250);
+            }, 1000);
         })
     }
 
@@ -209,9 +209,12 @@ class Spectator {
             }
 
             let totalScore = 0;
+            let ecpCount = 0;
             for (let player of players) totalScore += player.score;
+            for (let player of players) if (player.profile.custom) ecpCount++;
 
             column.insertAdjacentHTML("beforeend", `
+                <span><b class="float-start">ECP Count</b> <p class="float-end m-0">${ecpCount}</p><br></span>
                 <span><b class="float-start">Level</b> <p class="float-end m-0">${self.teams[teamIndex].level}</p><br></span>
                 <span><b class="float-start">Gems</b> <p class="float-end m-0">${self.teams[teamIndex].crystals}</p><br></span>
                 <span><b class="float-start">Score</b> <p class="float-end m-0">${totalScore}</p><br></span>
