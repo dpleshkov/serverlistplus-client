@@ -51,7 +51,7 @@ class SimStatusListProvider {
     async _tick() {
         const self = this;
 
-        let data = await fetch("https://starblast.io/simstatus.json");
+        let data = await fetch(`https://starblast.io/simstatus.json?cachebypass=${Math.random()}`);
         self.simStatus = await data.json();
 
         let now = Date.now();
