@@ -10,7 +10,7 @@
 
     <!-- Site CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/themes/default_light.css" id="themeStylesheet">
 
@@ -35,11 +35,7 @@
 
     <!-- Site Mode -->
     <script type="text/javascript">
-        window._SITEMODE = "<%= config.site.mode %>";
-        <% if (config.site.mode === "live") { %>
-            window._LIVEAPIURL = "<%= config.site["live-api-provider"] %>";
-            window._STATICAPIURL = "<%= config.site["static-api-provider"] %>";
-        <% } %>
+        window.siteConfig = <%- JSON.stringify(config.site) %>;
     </script>
 
 </head>

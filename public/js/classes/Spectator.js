@@ -20,7 +20,7 @@ class Spectator {
         }
 
         self.destroyed = false;
-        self.socket = new WebSocket(window._LIVEAPIURL);
+        self.socket = new WebSocket(window.siteConfig["live-api-provider"]);
 
         self.socket.addEventListener("open", () => {
             self.socket.send(JSON.stringify({

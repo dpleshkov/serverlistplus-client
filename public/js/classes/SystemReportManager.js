@@ -37,7 +37,7 @@ class SystemReportManager {
 
         // Check if system mode supports live view
 
-        if (window._SITEMODE === "live" && (system.mode === "team" || (system.mode === "modding" && ["useries", "nauticseries", "alienintrusion"].includes(system.mod_id)))) {
+        if (window.siteConfig.mode === "live" && (system.mode === "team" || (system.mode === "modding" && ["useries", "nauticseries", "alienintrusion"].includes(system.mod_id)))) {
             document.getElementById("systemSpectateButton").style.display = "";
             document.getElementById("systemReportLink").classList.remove("rounded-end");
 
