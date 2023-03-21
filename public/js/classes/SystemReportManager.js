@@ -46,7 +46,35 @@ class SystemReportManager {
                 window.activeSpectator = new Spectator(system.id);
                 Spectator.show();
             }
+
+            // show supported static api div
+            document.getElementById("SR_StaticAPIRequired").style.display = "";
+            // Reset values
+            document.getElementById("SR_ECPCount").innerText = "";
+            document.getElementById("SR_TotalTeamScores").innerText = "";
+            document.getElementById("SR_PlayerList").innerText = "";
+
+            // async fetch game info from static api
+            fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}`).then(async(response) => {
+                let info = await response.json();
+                if (info && info.players) {
+                    let playerList = [];
+                    let teamECPCount = [];
+                    let teamScoreCount = [];
+                    for (let team of info.mode.teams) {
+                        teamECPCount.push(`${team.ecpCount} ${team.color}`);
+                        teamScoreCount.push(`${Math.floor(team.totalScore/1000)}k ${team.color}`);
+                    }
+                    for (let player of Object.values(info.players)) {
+                        playerList.push(player.player_name);
+                    }
+                    document.getElementById("SR_PlayerList").innerText = playerList.join(", ").replaceAll("\u202E", "");
+                    document.getElementById("SR_ECPCount").innerText = teamECPCount.join(", ");
+                    document.getElementById("SR_TotalTeamScores").innerText = teamScoreCount.join(", ");
+                }
+            })
         } else {
+            document.getElementById("SR_StaticAPIRequired").style.display = "none";
             document.getElementById("systemSpectateButton").style.display = "none";
             document.getElementById("systemReportLink").classList.add("rounded-end");
         }
