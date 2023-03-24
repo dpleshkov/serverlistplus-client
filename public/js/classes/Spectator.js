@@ -432,18 +432,16 @@ class Spectator {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
 
-        /*if (window.devicePixelRatio > 1) {
+        if (window.devicePixelRatio > 1) {
             let canvasWidth = canvas.width;
             let canvasHeight = canvas.height;
             let ctx = canvas.getContext("2d");
 
             canvas.width = canvasWidth * window.devicePixelRatio;
             canvas.height = canvasHeight * window.devicePixelRatio;
-            canvas.style.width = canvasWidth + "px";
-            canvas.style.height = canvasHeight + "px";
 
             ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        }*/
+        }
 
     }
 
