@@ -334,19 +334,21 @@ function hexToRgb(hex) {
 }
 
 let translateColor = function(hue) {
-    if (hue >= 0 && hue < 30) {
+    if (hue >= 0 && hue < 20) {
         return "Red";
-    } else if (hue >= 30 && hue < 60) {
+    } else if (hue >= 20 && hue < 40) {
         return "Orange";
-    } else if (hue >= 60 && hue < 90) {
+    } else if (hue >= 40 && hue < 70) {
         return "Yellow";
-    } else if (hue >= 90 && hue < 150) {
+    } else if (hue >= 70 && hue < 140) {
         return "Green";
-    } else if (hue >= 150 && hue < 270) {
+    } else if (hue >= 140 && hue < 170) {
+        return "Teal";
+    } else if (hue >= 170 && hue < 270) {
         return "Blue";
     } else if (hue >= 270 && hue < 300) {
         return "Purple";
-    } else if (hue >= 300 && hue < 360) {
+    } else if (hue >= 300 && hue < 330) {
         return "Pink";
     }
     return "Red";

@@ -380,7 +380,7 @@ class Spectator {
         // Render players
 
         for (let player of self.players) {
-            if (!player) continue;
+            if (!player || !player.alive) continue;
             let x = (player.x / (self.modeInfo.mode.map_size * 5)) * (canvas.width / 2);
             let y = -(player.y / (self.modeInfo.mode.map_size * 5)) * (canvas.height / 2);
 
