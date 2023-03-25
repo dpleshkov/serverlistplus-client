@@ -85,7 +85,8 @@ class Spectator {
                     x: view.getFloat32(offset + 1, true),
                     y: view.getFloat32(offset + 5, true),
                     score: view.getUint32(offset + 9, true),
-                    ship: view.getUint16(offset + 13, true)
+                    alive: view.getUint16(offset + 13, true) & (1 << 15),
+                    ship: view.getUint16(offset + 13, true) & ~(1 << 15)
                 }
                 markedIds.add(view.getUint8(offset));
             }
