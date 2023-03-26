@@ -188,7 +188,7 @@ class Spectator {
             column.className = colClass;
             column.style.overflowY = "scroll";
             column.style.overflowX = "hidden";
-            column.style.height = document.getElementById("spectatorCanvas").height + "px";
+            column.style.height = document.getElementById("spectatorCanvas").style.height;
 
             let title = document.createElement("h5");
             title.innerText = translateColor(team.hue);
@@ -426,10 +426,10 @@ class Spectator {
         // Resize canvas element itself
         let canvas = document.getElementById("spectatorCanvas");
 
-        canvas.setAttribute("width", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
-        canvas.setAttribute("height", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
         canvas.style.width = (canvas.parentElement.clientWidth) + "px";
         canvas.style.height = (canvas.parentElement.clientWidth) + "px";
+        canvas.setAttribute("width", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
+        canvas.setAttribute("height", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
     }
 
     static show() {

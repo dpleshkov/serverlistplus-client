@@ -82,3 +82,7 @@ h1, h2, h3, h4, h5, b {
     scrollbar-width: none;
 }
 
+.analysis-col::-webkit-scrollbar {
+    display: none;
+}
+
