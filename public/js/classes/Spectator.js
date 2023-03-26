@@ -426,24 +426,10 @@ class Spectator {
         // Resize canvas element itself
         let canvas = document.getElementById("spectatorCanvas");
 
-
-        canvas.style.width = "100%";
-        canvas.style.height = `${canvas.offsetWidth}px`;
-
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-
-        if (window.devicePixelRatio > 1) {
-            let canvasWidth = canvas.width;
-            let canvasHeight = canvas.height;
-            let ctx = canvas.getContext("2d");
-
-            canvas.width = canvasWidth * window.devicePixelRatio;
-            canvas.height = canvasHeight * window.devicePixelRatio;
-
-            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-        }
-
+        canvas.setAttribute("width", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
+        canvas.setAttribute("height", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
+        canvas.style.width = (canvas.parentElement.clientWidth) + "px";
+        canvas.style.height = (canvas.parentElement.clientWidth) + "px";
     }
 
     static show() {
