@@ -26,6 +26,48 @@
     font-family: "Nunito Sans", sans-serif;
 }
 
+/* Starblast Ship Fonts */
+
+@font-face {
+    font-family: "Starblast Vanilla Ships";
+    src: url("/fonts/Starblast/starblast-vanilla-ships.ttf");
+    font-display: swap;
+}
+
+.ship-icon-vanilla {
+    font-family: "Starblast Vanilla Ships", sans-serif;
+}
+
+@font-face {
+    font-family: "Starblast Intrusion Ships";
+    src: url("/fonts/Starblast/starblast-intrusion-ships.ttf");
+    font-display: swap;
+}
+
+.ship-icon-intrusion {
+    font-family: "Starblast Intrusion Ships", sans-serif;
+}
+
+@font-face {
+    font-family: "Starblast U-Series Ships";
+    src: url("/fonts/Starblast/starblast-useries-ships.ttf");
+    font-display: swap;
+}
+
+.ship-icon-useries {
+    font-family: "Starblast U-Series Ships", sans-serif;
+}
+
+@font-face {
+    font-family: "Starblast Nautic Ships";
+    src: url("/fonts/Starblast/starblast-nautic-ships.ttf");
+    font-display: swap;
+}
+
+.ship-icon-nautic {
+    font-family: "Starblast Nautic Ships", sans-serif;
+}
+
 /* Text Styling */
 
 body {

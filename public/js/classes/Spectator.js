@@ -245,13 +245,10 @@ class Spectator {
             players.sort((a, b) => {return b.score - a.score});
             for (let player of players) {
                 let doImageFilter = false;
-                let filter;
 
                 let firstSpan = document.createElement("span");
 
                 if (player.profile.custom) {
-                    let rgb = hsv2rgb(player.profile.hue, 0.8, 0.8);
-                    filter = new Solver(new Color(rgb[0]*255, rgb[1]*255, rgb[2]*255)).solve().filter;
                     doImageFilter = true;
 
                     if (player.profile.custom.badge !== "blank") {
@@ -267,11 +264,10 @@ class Spectator {
 
                 let image = "";
                 if (displayShips && doImageFilter) {
-                    image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; ${filter}" src="/img/ships/${shipFolder}/${player.ship}.png" alt="" class="ship-image">`;
+                    image = `<span class="ship-icon ship-icon-${shipFolder}" style="color: hsl(${player.profile.hue}, 100%, 40%)">${String.fromCharCode(player.ship)}</span>`;
                 } else if (displayShips) {
-                    image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; filter: ${getComputedStyle(document.documentElement).getPropertyValue("--ship-icons-filter")}" src="/img/ships/${shipFolder}/${player.ship}.png" alt="" class="ship-image">`;
+                    image = `<span class="ship-icon ship-icon-${shipFolder}">${String.fromCharCode(player.ship)}</span>`;
                 } else if (!displayShips && doImageFilter) {
-                    image = `<img style="height:0.65rem; width:0.65rem; margin-bottom: 0.1rem; ${filter}" src="/img/ships/vanilla/000.png" alt="" class="ship-image">`;
                 }
 
                 firstSpan.setAttribute("style", "font-size: 0.65rem; overflow: hidden; white-space: nowrap;");
