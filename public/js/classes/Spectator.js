@@ -76,46 +76,47 @@ class Spectator {
         let view = new DataView(buffer);
 
         if (view.getUint8(0) === 0x01) {
-            let markedIds = new Set();
-            let ships = [];
+            let receivedIDs = new Set();
             // if message is ship info
             for (let offset = 1; offset <= view.byteLength - 15; offset += 15) {
-                ships[view.getUint8(offset)] = {
+
+                let id = view.getUint8(offset);
+                let decodedStatus = {
                     id: view.getUint8(offset),
                     x: view.getFloat32(offset + 1, true),
                     y: view.getFloat32(offset + 5, true),
                     score: view.getUint32(offset + 9, true),
-                    alive: view.getUint16(offset + 13, true) & (1 << 15),
+                    alive: (view.getUint16(offset + 13, true) & (1 << 15)) !== 0,
                     ship: view.getUint16(offset + 13, true) & ~(1 << 15)
-                }
-                markedIds.add(view.getUint8(offset));
-            }
-            for (let player of self.players) if (player && !markedIds.has(player.id)) delete self.players[player.id];
-            for (let player of ships) {
-                if (!player) continue;
-
-                if (!self.players[player.id]) {
-                    self.players[player.id] = player;
+                };
+                // if we've received position on a player whose name we don't know yet
+                if (!self.players[id]) {
+                    self.players[id] = decodedStatus;
+                    // send request to get player's name
                     self.socket.send(JSON.stringify({
                         name: "get_name",
                         data: {
-                            id: player.id
+                            id: id
                         }
                     }));
-                    self.players[player.id].profile = {
+                    // give the player a generic name for now
+                    self.players[id].profile = {
                         custom: null,
                         friendly: 0,
                         hue: 0,
-                        id: player.id,
+                        id: id,
                         player_name: "???"
                     }
                 } else {
-                    self.players[player.id].x = player.x;
-                    self.players[player.id].y = player.y;
-                    self.players[player.id].score = player.score;
-                    self.players[player.id].ship = player.ship;
+                    // Otherwise, update the player's status
+                    Object.assign(self.players[id], decodedStatus);
                 }
+                // add the ID to the set of IDs we've received in this packet
+                receivedIDs.add(view.getUint8(offset));
             }
+            // Check if any of our currently stored player objects is not present in the radar
+            // packet received. If it isn't present, delete it.
+            for (let player of self.players) if (player && !receivedIDs.has(player.id)) delete self.players[player.id];
         } else if (view.getUint8(0) === 0x02) {
             let teams = [];
             let i = 0;
@@ -151,6 +152,7 @@ class Spectator {
 
         self.renderMap();
         //self.renderLeaderBoard().then();
+        self.lastRenderTimeStamp = Date.now();
 
         requestAnimationFrame(() => {
             self.render();
@@ -298,6 +300,8 @@ class Spectator {
         let canvas = document.getElementById("spectatorCanvas");
         let ctx = canvas.getContext("2d");
 
+        let deltaT = Date.now() - self.lastRenderTimeStamp;
+
         ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--spectate-background-color");
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -375,12 +379,20 @@ class Spectator {
 
         // Render players
 
+        let adjust = function(x, size) {
+            return ((x + size / 2) % size) - (size / 2);
+        }
+
         for (let player of self.players) {
             if (!player || !player.alive) continue;
+
+            let profile = player.profile;
+
             let x = (player.x / (self.modeInfo.mode.map_size * 5)) * (canvas.width / 2);
             let y = -(player.y / (self.modeInfo.mode.map_size * 5)) * (canvas.height / 2);
 
-            let rgb = hsv2rgb(player.profile.hue, S, V);
+            let rgb = hsv2rgb(profile.hue, S, V);
+
             ctx.fillStyle = `rgb(${rgb[0]*255}, ${rgb[1]*255}, ${rgb[2]*255})`;
             ctx.strokeStyle = `rgb(${rgb[0]*255}, ${rgb[1]*255}, ${rgb[2]*255})`;
             ctx.lineWidth = maxRadius * 1.5;
