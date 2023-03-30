@@ -466,7 +466,7 @@ class Spectator {
         if (!self.activePosition) return;
 
         for (let player of self.activePosition.positions) {
-            if (!player || !player.alive) continue;
+            if (!player || !player.alive || !self.players[player.id]) continue;
 
             let profile = self.players[player.id].profile;
 
