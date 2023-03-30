@@ -3,6 +3,14 @@ window.hsv2rgb = function (h, s, v) {
     return [f(5), f(3), f(1)];
 }
 
+window.hsv2hex = function(h, s, v) {
+    let rgb = window.hsv2rgb(h, s, v);
+    let r = Math.floor(rgb[0] * 255);
+    let g = Math.floor(rgb[1] * 255);
+    let b = Math.floor(rgb[2] * 255);
+    return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+}
+
 window.roundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
     if (typeof stroke === 'undefined') {
         stroke = true;
@@ -35,7 +43,58 @@ window.roundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
     if (stroke) {
         ctx.stroke();
     }
+}
 
+window.drawCross = function(canvas, ctx, x, y, color, maxRadius) {
+    ctx.fillStyle = color;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = maxRadius * 1.5;
+    let c = [
+        canvas.width / 2 + x - maxRadius * 1.5,
+        canvas.width / 2 + y - maxRadius * 1.5,
+        canvas.width / 2 + x + maxRadius * 1.5,
+        canvas.width / 2 + y + maxRadius * 1.5
+    ]
+    if (preferencesManager.preferences.centerMapOnAsteroids) {
+        for (let x in c) {
+            c[x] = c[x] + canvas.width / 2;
+        }
+        if (c[0] >= canvas.width && c[2] >= canvas.width) {
+            c[0] = c[0] % canvas.width;
+            c[2] = c[2] % canvas.width;
+        }
+        if (c[1] >= canvas.width && c[3] >= canvas.width) {
+            c[1] = c[1] % canvas.width;
+            c[3] = c[3] % canvas.width;
+        }
+    }
+    ctx.beginPath();
+    ctx.moveTo(c[0], c[1]);
+    ctx.lineTo(c[2], c[3]);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(c[0], c[3]);
+    ctx.lineTo(c[2], c[1]);
+    ctx.stroke();
+    ctx.fill();
+}
+
+const shortestPath = function(x1, y1, x2, y2, mapSize) {
+    let dx = x2 - x1;
+    if (dx < mapSize * -5) {
+        dx += (mapSize * 10);
+    } else if (dx > mapSize * 5) {
+        dx -= mapSize * 10;
+    }
+
+    let dy = y2 - y1;
+    if (dy < mapSize * -5) {
+        dy += mapSize * 10;
+    } else if (dy > mapSize * 5) {
+        dy -= mapSize * 10;
+    }
+
+    return [dx, dy]
 }
 
 let translateColor = function(hue) {
