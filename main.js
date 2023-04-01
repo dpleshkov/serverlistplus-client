@@ -6,6 +6,9 @@ const cors = require("cors");
 const app = express();
 const port = config.server.port || 3000;
 
+config.revision = require('child_process').execSync('git rev-parse HEAD').toString().trim();
+config.revisionTime = require('child_process').execSync('git log -1 --format=%at').toString().trim();
+
 app.use(express.json());
 app.use(cors());
 app.use(compression());

@@ -4,8 +4,16 @@ let settingsModal = new bootstrap.Modal(document.getElementById('settingsModal')
     keyboard: false
 });
 
+let aboutModal = new bootstrap.Modal(document.getElementById('aboutModal'), {
+    keyboard: false
+});
+
 document.getElementById("navbarSettingsButton").addEventListener("click", () => {
     settingsModal.show();
+});
+
+document.getElementById("navbarAboutButton").addEventListener("click", () => {
+    aboutModal.show();
 });
 
 /* Responsive Scroll Height Setting */

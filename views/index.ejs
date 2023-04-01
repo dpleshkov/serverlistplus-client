@@ -51,6 +51,7 @@
 
 </head>
 <body>
+<%- include("./index/aboutModal") %>
 <%- include("./index/settings") %>
 <% if (config.site.mode === "live") { %>
     <%- include("./index/spectatorModal") %>
@@ -70,7 +71,8 @@
             <a class="ms-auto me-2 nav-link nav-icon bi bi-pc-display" href="/app" title="Desktop App Port"></a>
             <a class="me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
             <a class="me-2 nav-link nav-icon bi bi-discord" href="https://discord.com/invite/5fs5bzxk4t"></a>
-            <a class="nav-link nav-icon bi bi-gear-fill" id="navbarSettingsButton"></a>
+            <a class="me-2 nav-link nav-icon bi bi-gear-fill" id="navbarSettingsButton"></a>
+            <a class="nav-link nav-icon bi bi-info-circle-fill" id="navbarAboutButton"></a>
         </div>
     </nav>
     <div class="row">

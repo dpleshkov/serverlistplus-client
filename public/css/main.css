@@ -91,6 +91,10 @@ h1, h2, h3, h4, h5, b {
     cursor: pointer;
 }
 
+.no-underline {
+    text-decoration: none;
+}
+
 /* System List Styling */
 
 .system-list-item:hover {
