@@ -421,7 +421,7 @@ class Spectator {
                 } else if (!displayShips && doImageFilter) {
                 }
 
-                firstSpan.setAttribute("style", "font-size: 0.65rem; overflow: hidden; white-space: nowrap;");
+                firstSpan.setAttribute("style", "font-size: 0.65rem; overflow: hidden; white-space: nowrap; color: inherit; cursor: inherit;");
                 firstSpan.setAttribute("class", "float-start");
                 //firstSpan.innerHTML += image;
                 firstSpan.innerHTML += `&nbsp`;
@@ -429,7 +429,7 @@ class Spectator {
                 col.appendChild(firstSpan);
 
                 col.insertAdjacentHTML("beforeend", `
-                    <span class="float-end" style="font-size: 0.65rem">
+                    <span class="float-end" style="font-size: 0.65rem; color: inherit; cursor: inherit;">
                         ${player.score}
                         ${image}
                     </span>

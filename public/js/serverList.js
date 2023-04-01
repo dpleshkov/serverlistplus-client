@@ -7,6 +7,8 @@ let systemReportManager = new SystemReportManager(preferencesManager);
 
 let systemListManager = new SystemListManager(preferencesManager, systemListProvider, systemReportManager);
 
+let tickCount = 0;
+
 let _tick = function() {
     systemListManager._tick();
 
@@ -15,6 +17,8 @@ let _tick = function() {
     document.getElementById("countEurope").innerText = population.Europe;
     document.getElementById("countAsia").innerText = population.Asia;
     document.getElementById("countTotal").innerText = population.World;
+
+    tickCount++;
 
     requestAnimationFrame(_tick);
 }

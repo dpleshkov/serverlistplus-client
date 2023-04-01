@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Play');
+
+@font-face {
+    font-family: 'SBGlyphs';
+    src: url('https://starblast.data.neuronality.com/fonts/starblast-glyphs.ttf?v=1');
+    font-weight: normal;
+    font-style: normal
+}
+
+.bi {
+    font-family: "SBGlyphs", sans-serif;
+}
+
+.bi-people-fill::before,
+.bi-person-fill::before,
+.bi-bullseye::before,
+.bi-trophy-fill::before,
+.bi-code-slash::before,
+.bi-border::before,
+.bi-wrench::before,
+.navbar-toggler-icon::before {
+    font-family: 'SBGlyphs' !important;
+}
+
+.bi-people-fill::before {
+    content: "\00bd";
+}
+
+.bi-person-fill::before {
+    content: "\0079";
+}
+
+.bi-bullseye::before {
+    content: "\00bc";
+}
+
+.bi-trophy-fill::before {
+    content: "\00be";
+}
+
+.bi-code-slash::before {
+    content: "\00c1";
+}
+
+.bi-border::before {
+    content: "\00bf";
+}
+
+.bi-wrench::before {
+    content: "\0022";
+}
+
+.navbar-toggler-icon::before {
+    vertical-align: -0.125em;
+    content: "\0042";
+}
+
+body {
+    color-scheme: dark;
+    background-image: url("https://starblast.io/static/img/bg.webp");
+    font-family: "Play", sans-serif;
+    color: var(--sb-color);
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: var(--sb-color);
+}
+
+.card, .btn, .navbar-toggler {
+    background: radial-gradient(ellipse at center, hsla(200, 50%, 0%, 1) 0, hsla(200, 100%, 70%, .5) 150%);
+    box-shadow: 0 0 6px hsl(200deg 100% 80%);
+    text-shadow: 0 0 7px hsl(200deg 100% 80%);
+    color: var(--sb-color);
+    border: 0;
+}
+
+#spectatorModal > .modal-dialog > .modal-content {
+    background: linear-gradient(135deg,hsla(200,30%,10%,1) 0,hsla(200,30%,30%,1) 150%);
+}
+
+.system-list-item:hover {
+    background: radial-gradient(ellipse at center,hsla(200,50%,0%,1) 0,hsla(200,100%,70%,.5) 100%);
+}
+
+.btn-outline-danger:hover {
+    background: radial-gradient(ellipse at center, hsla(200, 50%, 0%, 1) 0, var(--bs-danger) 100%);
+}
+
+.btn-outline-success:hover {
+    background: radial-gradient(ellipse at center, hsla(200, 50%, 0%, 1) 0, var(--bs-success) 100%);
+}
+
+.nav-link:hover {
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.modal-content {
+    background: var(--background-color);
+    border-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 0.25rem solid white;
+}
+
+:root {
+    --background-color: #202020;
+    --spectate-background-color: #202020;
+    --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: yellow;
+    --ship-icons-filter: "";
+    --text-color: white;
+    --sb-color: hsla(200, 100%, 90%, .8);
+}
