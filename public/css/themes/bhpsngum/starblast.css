@@ -60,6 +60,7 @@ body {
     background-image: url("https://starblast.io/static/img/bg.webp");
     font-family: "Play", sans-serif;
     color: var(--sb-color);
+    overflow-y: hidden;
 }
 
 .navbar-brand, .navbar-brand:hover {
@@ -100,20 +101,6 @@ body {
     border-color: white;
 }
 
-::-webkit-scrollbar {
-    width: 0.1rem;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: white;
-    border-radius: 0.25rem;
-    border: 0.25rem solid white;
-}
-
 :root {
     --background-color: #202020;
     --spectate-background-color: #202020;
@@ -123,4 +110,20 @@ body {
     --ship-icons-filter: "";
     --text-color: white;
     --sb-color: hsla(200, 100%, 90%, .8);
+}
+
+/*::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    background-color: transparent;
+}*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
+    background-color: hsla(200, 50%, 70%, .5);
 }
