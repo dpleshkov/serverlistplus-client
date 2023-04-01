@@ -397,6 +397,7 @@ window.getECPIcon = function (custom) {
     return new Promise((resolve) => {
         if (window.cachedBadges[JSON.stringify(custom)]) {
             resolve(window.cachedBadges[JSON.stringify(custom)]);
+            return;
         }
         let query = ECPIcons[custom.badge];
         if (!query) query = ECPIcons["star"];
