@@ -9,6 +9,10 @@ const port = config.server.port || 3000;
 config.revision = require('child_process').execSync('git rev-parse HEAD').toString().trim();
 config.revisionTime = require('child_process').execSync('git log -1 --format=%at').toString().trim();
 
+if (config.server.production) {
+    process.env.NODE_ENV = 'production';
+}
+
 app.use(express.json());
 app.use(cors());
 app.use(compression());
