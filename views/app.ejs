@@ -54,7 +54,7 @@
         }
     </script>
     <% if (config.site.analytics.enabled) { %>
-        <%= config.site.analytics.tag %>
+        <%- include("./index/analytics") %>
     <% } %>
 </head>
 
