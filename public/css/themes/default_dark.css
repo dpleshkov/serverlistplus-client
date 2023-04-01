@@ -39,6 +39,8 @@ body {
     --background-color: #202020;
     --spectate-background-color: #202020;
     --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: yellow;
     --ship-icons-filter: "";
     --text-color: white;
 }

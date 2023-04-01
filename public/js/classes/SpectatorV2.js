@@ -26,6 +26,25 @@ class Spectator {
         self.bindWebSocket(systemId);
     }
 
+    #spectatingID = null;
+
+    get spectatingID() {
+        return this.#spectatingID;
+    }
+
+    set spectatingID(val) {
+        console.log(`Setting new spectator id: ${val}`);
+        if (this.#spectatingID === val) return;
+        let Old = document.querySelector("#live-ship-viewer-" + this.#spectatingID);
+        let New = document.querySelector("#live-ship-viewer-" + val);
+
+        if (Old) Old.setAttribute("class", "player-view-box");
+
+        if (New) New.setAttribute("class", "player-view-box highlighted");
+
+        this.#spectatingID = val;
+    }
+
     prepareUI() {
         const self = this;
         // Temporary placeholder text while system info loads
@@ -45,6 +64,43 @@ class Spectator {
             window.activeSpectator.destroy();
         }
         window.activeSpectator = self;
+
+        // prepare canvas event
+
+        let canvas = document.querySelector("#spectatorCanvas");
+
+        canvas.onmousemove = function (e) {
+            if (self.players == null) return;
+            let cdata = canvas.getBoundingClientRect();
+            let cursorX = (e.clientX - cdata.left) * 2;
+            let cursorY = (e.clientY - cdata.top) * 2;
+
+            let lastDist = Infinity;
+
+            let hasTarget = false, oldID = self.spectatingID;
+
+            for (let player of self.players) {
+                if (!player || !player.renderInfo) continue;
+
+                let shipX = player.renderInfo.x;
+                let shipY = player.renderInfo.y;
+
+                let dist = Math.sqrt((shipX - cursorX) ** 2 + (shipY - cursorY) ** 2);
+
+                // simply just ignore every players which are too far from the current cursor
+                if (dist > player.renderInfo.radius) continue;
+                hasTarget = true;
+                if (dist < lastDist) {
+                    lastDist = dist;
+                    self.spectatingID = player.id;
+                }
+            }
+            if (!hasTarget) self.spectatingID = null;
+        };
+
+        canvas.onmouseout = function () {
+            self.spectatingID = null;
+        };
     }
 
     bindWebSocket(systemId) {
@@ -328,6 +384,17 @@ class Spectator {
 
             players.sort((a, b) => {return b.score - a.score});
             for (let player of players) {
+                let col = document.createElement("div");
+
+                let playerID = player.id;
+
+                col.id = "live-ship-viewer-" + playerID;
+
+                if (playerID === self.spectatingID) {
+                    col.setAttribute("class", "player-view-box highlighted");
+                } else {
+                    col.setAttribute("class", "player-view-box");
+                }
                 let doImageFilter = false;
 
                 let firstSpan = document.createElement("span");
@@ -359,15 +426,25 @@ class Spectator {
                 //firstSpan.innerHTML += image;
                 firstSpan.innerHTML += `&nbsp`;
                 firstSpan.innerHTML += player.profile.player_name.replace("<", "&lt").replace(">", "&gt");
-                column.appendChild(firstSpan);
+                col.appendChild(firstSpan);
 
-                column.insertAdjacentHTML("beforeend", `
-                <span class="float-end" style="font-size: 0.65rem">
-                    ${player.score}
-                    ${image}
-                </span>
-                <br>
-            `);
+                col.insertAdjacentHTML("beforeend", `
+                    <span class="float-end" style="font-size: 0.65rem">
+                        ${player.score}
+                        ${image}
+                    </span>
+                `);
+
+                col.addEventListener("mouseover", function (e) {
+                    self.spectatingID = playerID;
+                });
+
+                col.addEventListener("mouseout", function (e) {
+                    if (self.spectatingID === playerID) self.spectatingID = null;
+                });
+
+                column.appendChild(col);
+                column.insertAdjacentHTML('beforeend', "<br>");
             }
 
             column.scrollTop = scrollAmounts[i];
@@ -474,7 +551,10 @@ class Spectator {
             let y = -(player.y / (self.modeInfo.mode.map_size * 5)) * (canvas.height / 2);
 
             let color = hsv2hex(profile.hue, S, V);
-            window.drawCross(canvas, ctx, x, y, color, maxRadius);
+
+            // draw a little while circle around the "X" if it's highlighting
+
+            self.players[player.id].renderInfo = window.drawCross(canvas, ctx, x, y, color, maxRadius, player.id === self.spectatingID);
         }
     }
 

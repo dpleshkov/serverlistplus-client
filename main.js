@@ -32,6 +32,12 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/app", (req, res) => {
+    res.render("app", {
+        config: config
+    });
+})
+
 if (config.server.production) process.env.NODE_ENV = "production";
 
 app.listen(port, () => {

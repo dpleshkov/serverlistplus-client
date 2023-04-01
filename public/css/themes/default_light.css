@@ -6,6 +6,8 @@ body {
     --background-color: white;
     --spectate-background-color: white;
     --spectate-asteroids-color: black;
+    --spectate-player-highlighting-color: black;
+    --spectate-leaderboard-highlighting-color: yellow;
     --text-color: black;
     --ship-icons-filter: invert(1);
 }

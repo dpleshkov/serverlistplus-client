@@ -10,6 +10,7 @@
       "tag": ""
     },
     "mode": "standalone",
-    "api-provider": "wss://example.com:1234"
+    "live-api-provider": "wss://example.com:1234/",
+    "static-api-provider": "https://example.com/"
   }
 }

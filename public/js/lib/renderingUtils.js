@@ -45,7 +45,7 @@ window.roundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
     }
 }
 
-window.drawCross = function(canvas, ctx, x, y, color, maxRadius) {
+window.drawCross = function(canvas, ctx, x, y, color, maxRadius, isTarget) {
     ctx.fillStyle = color;
     ctx.strokeStyle = color;
     ctx.lineWidth = maxRadius * 1.5;
@@ -77,6 +77,21 @@ window.drawCross = function(canvas, ctx, x, y, color, maxRadius) {
     ctx.lineTo(c[2], c[1]);
     ctx.stroke();
     ctx.fill();
+    let pos = {
+        x: (c[0] + c[2]) / 2,
+        y: (c[1] + c[3]) / 2,
+        radius: maxRadius * 3
+    };
+
+    if (isTarget) {
+        ctx.beginPath();
+        ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--spectate-player-highlighting-color");
+        ctx.lineWidth = 2;
+        ctx.arc(pos.x, pos.y, pos.radius, 0, 2 * Math.PI);
+        ctx.stroke();
+    }
+
+    return pos;
 }
 
 const shortestPath = function(x1, y1, x2, y2, mapSize) {
