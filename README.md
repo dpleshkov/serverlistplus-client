@@ -22,6 +22,12 @@ npm install
 Then, copy `config.example.json` to `config.json` and edit the config
 file.
 
+Run using
+
+```bash
+node main.js
+```
+
 Explanation of config values (do not copy-paste the `const config =`):
 
 ```js
