@@ -37,7 +37,7 @@
     <% } %>
 
     <% if (config.site.analytics.enabled) { %>
-        <%= config.site.analytics.tag %>
+        <%- include("./index/analytics") %>
     <% } %>
 
     <script type="text/javascript" src="/js/lib/mapGen.js"></script>

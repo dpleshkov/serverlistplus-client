@@ -6,8 +6,7 @@
   },
   "site": {
     "analytics": {
-      "enabled": false,
-      "tag": ""
+      "enabled": false
     },
     "mode": "standalone",
     "live-api-provider": "wss://example.com:1234/",
