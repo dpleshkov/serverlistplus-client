@@ -72,8 +72,8 @@ class Spectator {
         canvas.onmousemove = function (e) {
             if (self.players == null) return;
             let cdata = canvas.getBoundingClientRect();
-            let cursorX = (e.clientX - cdata.left) * 2;
-            let cursorY = (e.clientY - cdata.top) * 2;
+            let cursorX = (e.clientX - cdata.left) * window.devicePixelRatio;
+            let cursorY = (e.clientY - cdata.top) * window.devicePixelRatio;
 
             let lastDist = Infinity;
 
