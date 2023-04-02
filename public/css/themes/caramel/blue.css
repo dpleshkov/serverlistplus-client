@@ -1,0 +1,130 @@
+/*
+Serverlist+ blue theme
+by Caramel#8789 on discord :3
+*/
+
+:root {
+    --background-color: #032e58;
+    --spectate-background-color: #032e58;
+    --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: yellow;
+    --ship-icons-filter: "";
+    --text-color: white;
+}
+
+body {
+    background: linear-gradient(0deg, #000428 0%, #004e92 100%);
+    color: white;
+    color-scheme: dark;
+    font-family: "Comic Sans MS", sans-serif;
+    height: 100vh;
+}
+
+.card {
+    background-color: #00000030;
+}
+
+.card:hover {
+    outline-style: none;
+    border-color: white;
+    box-shadow: none;
+}
+
+.btn-outline-success {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.btn-outline-success:hover {
+    background-color: #ffffff30;
+    border-color: white;
+}
+
+.btn-outline-success:focus {
+    background-color: #ffffff30;
+    border-color: white
+}
+
+.btn-outline-danger {
+    color: #ffffff;
+    border-color: #ffffff;
+    outline-style: none
+}
+
+.btn-outline-danger:hover {
+    background-color: #ffffff30;
+    border-color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff;
+    border-color: #ffffff20
+}
+
+.navbar-light .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-light .navbar-brand:hover {
+    color: #ffffff;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: var(--background-color);
+    border-color: var(--background-color);
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #032e5880;
+    border-color: #032e5830;
+}
+
+.modal-content {
+    background-color: var(--background-color);
+}
+
+.form-check-input:checked {
+    background-color: var(--background-color);
+    border-color: var(--background-color);
+}
+
+.bg-dark {
+    background-color: #03274a !important;
+}
+
+.bg-dark:hover {
+    background-color: #03274a80 !important;
+}
+
+.popover {
+    font-family: "Comic Sans MS", sans-serif;
+    background-color: #ffffff;
+}
+
+.popover-body {
+    color: var(--background-color);
+}
+
+.btn:focus {
+    outline-style: none;
+    box-shadow: none;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #cccccc;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: var(--text-color);
+}

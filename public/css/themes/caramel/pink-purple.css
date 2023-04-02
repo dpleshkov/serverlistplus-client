@@ -1,0 +1,93 @@
+/* Serverlist+ pink-purple theme
+   by Caramel#8789 on discord :3 */
+
+:root {
+    --background-color: #caabde;
+    --spectate-background-color: #202020;
+    --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: yellow;
+    --ship-icons-filter: "";
+    --text-color: white;
+}
+
+body {
+    background: linear-gradient(180deg, #ddd6f3 0%, #faaca8 100%);
+    color: black;
+    font-family: "Comic Sans MS", sans-serif;
+    height: 100vh;
+}
+
+.card {
+    background-color: #ffffff28;
+
+}
+
+.btn-outline-success {
+    color: #000;
+    border-color: #000;
+}
+
+.btn-outline-success:hover {
+    background-color: #ffffff20;
+    border-color: #000;
+    color: #000
+}
+
+.btn-outline-danger {
+    color: #000;
+    border-color: #000;
+}
+
+.btn-outline-danger:hover {
+    background-color: #ffffff30;
+    border-color: #000;
+    color: #000
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+.navbar-light .navbar-brand {
+    color: #000;
+}
+
+.btn-danger {
+    color: #000;
+    background-color: #caabde;
+    border-color: #caabde;
+}
+
+.btn-danger:hover {
+    color: #000;
+    background-color: #caabde80;
+    border-color: #caabde30;
+}
+
+.modal-content {
+    background-color: #caabde;
+}
+
+.form-check-input:checked {
+    background-color: #caabde;
+    border-color: #caabde;
+}
+
+.bg-dark {
+    background-color: #caabde !important;
+}
+
+.bg-dark:hover {
+    background-color: #caabde80 !important;
+}
+
+.popover {
+    font-family: "Comic Sans MS", sans-serif;
+    background-color: #ffffff;
+}
+
+.btn:focus {
+    outline-style: none;
+    box-shadow: none;
+}
