@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+    color-scheme: dark;
+    font-family: "Inconsolata", sans-serif;
+    height: 100vh;
+    color: var(--text-color);
+}
+
+*:not(.ship-icon):not(.bi):not(.highlighted) {
+    font-family: "Inconsolata", sans-serif;
+    color: var(--text-color);
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: white;
+}
+
+.card {
+    background: transparent;
+    border-color: var(--text-color);
+}
+
+.card:hover {
+    border-color: white;
+}
+
+.nav-link:hover {
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.btn-outline-danger {
+    border-color: var(--text-color);
+}
+
+.btn-outline-danger:hover {
+    border-color: white;
+    background:transparent;
+}
+
+.modal-content {
+    background: var(--background-color);
+    border-color: white;
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 0.25rem solid white;
+}
+
+:root {
+    --background-color: black;
+    --spectate-background-color: black;
+    --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: yellow;
+    --ship-icons-filter: "";
+    --text-color: #23ff00;
+}
