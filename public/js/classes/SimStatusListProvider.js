@@ -6,6 +6,9 @@ class SimStatusListProvider {
         self.pollingRate = options.pollingRate || 10000;
 
         self.lastTick = Date.now();
+
+        self.refreshEventListeners = new Set();
+
         self._tick().then();
     }
 
@@ -54,6 +57,10 @@ class SimStatusListProvider {
         let data = await fetch(`https://starblast.io/simstatus.json?cachebypass=${Math.random()}`);
         self.simStatus = await data.json();
 
+        for (let handler of self.refreshEventListeners) {
+            handler();
+        }
+
         let now = Date.now();
 
         setTimeout(() => {
@@ -61,5 +68,13 @@ class SimStatusListProvider {
         }, self.pollingRate - (now - self.lastTick));
 
         self.lastTick = now;
+    }
+
+    on(eventName, handler) {
+        const self = this;
+
+        if (eventName === "refresh") {
+            self.refreshEventListeners.add(handler);
+        }
     }
 }

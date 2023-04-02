@@ -6,6 +6,7 @@ class PreferencesManager {
         self.renderPreferences(self.preferences);
 
         self.onchange = function() {};
+        self.changeEventListeners = new Set();
 
         /* Mode Select Bindings */
         for (let mode of ["team", "survival", "deathmatch", "modding", "custom", "invasion"]) {
@@ -47,6 +48,14 @@ class PreferencesManager {
         });
     }
 
+    on(eventName, handler) {
+        const self = this;
+
+        if (eventName === "change") {
+            self.changeEventListeners.add(handler);
+        }
+    }
+
     loadPreferences() {
         let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
         if (!storedPreferences) {
@@ -71,6 +80,11 @@ class PreferencesManager {
         const self = this;
 
         self.onchange(preferences);
+
+        for (let handler of self.changeEventListeners) {
+            handler(preferences);
+        }
+
         window.localStorage.setItem("preferences", JSON.stringify(preferences));
     }
 
