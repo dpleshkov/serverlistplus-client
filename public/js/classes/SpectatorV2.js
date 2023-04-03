@@ -36,7 +36,6 @@ class Spectator {
     }
 
     set spectatingID(val) {
-        console.log(`Setting new spectator id: ${val}`);
         if (this.#spectatingID === val) return;
         let Old = document.querySelector("#live-ship-viewer-" + this.#spectatingID);
         let New = document.querySelector("#live-ship-viewer-" + val);
@@ -142,6 +141,8 @@ class Spectator {
 
         self.modeInfo = modeInfo;
         self.modeInfo.mode.map_size = self.modeInfo.mode.map_size || 30;
+
+        self.compileAsteroidsMapImage();
 
         document.getElementById("spectatorModalTitle").innerText = `Spectating: ${self.modeInfo.name}`;
 
@@ -255,7 +256,6 @@ class Spectator {
             self.positionLogs.push(positionData);
             // if we don't have a current position yet, set the most recent info as the current position
             if (!self.activePosition) {
-                console.log("Set initial position data");
                 self.activePosition = positionData;
                 self.lastTickTimeStamp = Date.now();
             }
@@ -456,8 +456,10 @@ class Spectator {
         }
     }
 
-    renderMap() {
+    compileAsteroidsMapImage() {
         const self = this;
+
+        if (!self.modeInfo) return;
 
         let canvas = document.getElementById("spectatorCanvas");
         let ctx = canvas.getContext("2d");
@@ -504,6 +506,26 @@ class Spectator {
             }
             y++;
         }
+
+        // Ok, we're done. Let's get the image data
+
+        let image = canvas.toDataURL();
+
+        canvas.style.backgroundImage = `url(${image})`;
+    }
+
+    renderMap() {
+        const self = this;
+
+        let canvas = document.getElementById("spectatorCanvas");
+        let ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = self.backgroundColor;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        let size = self.modeInfo.mode.map_size;
+        let cellWidth = canvas.width / size;
+        let maxRadius = cellWidth / 2;
 
         // Render team mode bases
 
@@ -569,6 +591,8 @@ class Spectator {
         canvas.style.height = (canvas.parentElement.clientWidth) + "px";
         canvas.setAttribute("width", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
         canvas.setAttribute("height", String(canvas.parentElement.clientWidth*window.devicePixelRatio));
+
+        if (window.activeSpectator) window.activeSpectator.compileAsteroidsMapImage();
     }
 
     static show() {
