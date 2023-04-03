@@ -5,7 +5,7 @@ class SimStatusListProvider {
         self.simStatus = [];
         self.pollingRate = options.pollingRate || 10000;
 
-        self.lastTick = Date.now();
+        self.lastTick = Date.now() - self.pollingRate;
 
         self.refreshEventListeners = new Set();
 
@@ -61,9 +61,13 @@ class SimStatusListProvider {
             handler();
         }
 
+        let now = Date.now();
+
         setTimeout(() => {
             self._tick().then();
-        }, self.pollingRate);
+        }, (2 * self.pollingRate) - (now - self.lastTick));
+
+        self.lastTick = Date.now();
     }
 
     on(eventName, handler) {
