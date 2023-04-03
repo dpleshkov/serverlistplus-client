@@ -19,6 +19,9 @@ class Spectator {
         // timestamp of the last time we ticked player positions
         self.lastTickTimeStamp = null;
 
+        self.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue("--spectate-background-color");
+        self.asteroidsColor = getComputedStyle(document.documentElement).getPropertyValue("--spectate-asteroids-color");
+
         // Set placeholder text on the UI and add event listeners to cleanly
         // disconnect the socket if the panel is closed
         self.prepareUI();
@@ -459,7 +462,7 @@ class Spectator {
         let canvas = document.getElementById("spectatorCanvas");
         let ctx = canvas.getContext("2d");
 
-        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--spectate-background-color");
+        ctx.fillStyle = self.backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         let size = self.modeInfo.mode.map_size;
@@ -493,7 +496,7 @@ class Spectator {
                 let cr = (Number(asteroid) / 10) * maxRadius;
 
                 ctx.beginPath();
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--spectate-asteroids-color");
+                ctx.fillStyle = self.asteroidsColor;
                 ctx.arc(cx, cy, cr, 0, Math.PI * 2);
                 ctx.fill();
 
