@@ -512,6 +512,7 @@ class Spectator {
         let image = canvas.toDataURL();
 
         canvas.style.backgroundImage = `url(${image})`;
+        canvas.style.backgroundSize = canvas.style.width;
     }
 
     renderMap() {
