@@ -49,9 +49,10 @@ const config = {
         
         // If you want player listing however, you need to set the mode 
         // to "live"
+        
         "mode": "standalone",
-        "live-api-provider": "wss://example.com:1234/",
-        "static-api-provider": "https://example.com/"
+        "live-api-provider": "wss://api.starblast.dankdmitron.dev:7340/",
+        "static-api-provider": "https://api.starblast.dankdmitron.dev:7340/"
     }
 }
 ```
