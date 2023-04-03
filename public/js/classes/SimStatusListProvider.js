@@ -61,13 +61,9 @@ class SimStatusListProvider {
             handler();
         }
 
-        let now = Date.now();
-
         setTimeout(() => {
             self._tick().then();
-        }, self.pollingRate - (now - self.lastTick));
-
-        self.lastTick = now;
+        }, self.pollingRate);
     }
 
     on(eventName, handler) {
