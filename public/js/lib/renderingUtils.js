@@ -45,7 +45,7 @@ window.roundRect = function(ctx, x, y, width, height, radius, fill, stroke) {
     }
 }
 
-window.drawCross = function(canvas, ctx, x, y, color, maxRadius, isTarget) {
+window.drawCross = function(canvas, ctx, x, y, color, maxRadius, isTarget, outlineColor) {
     ctx.fillStyle = color;
     ctx.strokeStyle = color;
     ctx.lineWidth = maxRadius * 1.5;
@@ -85,7 +85,7 @@ window.drawCross = function(canvas, ctx, x, y, color, maxRadius, isTarget) {
 
     if (isTarget) {
         ctx.beginPath();
-        ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue("--spectate-player-highlighting-color");
+        ctx.strokeStyle = outlineColor;
         ctx.lineWidth = 2;
         ctx.arc(pos.x, pos.y, pos.radius, 0, 2 * Math.PI);
         ctx.stroke();

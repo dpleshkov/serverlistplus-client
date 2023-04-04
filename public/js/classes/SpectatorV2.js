@@ -21,6 +21,7 @@ class Spectator {
 
         self.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue("--spectate-background-color");
         self.asteroidsColor = getComputedStyle(document.documentElement).getPropertyValue("--spectate-asteroids-color");
+        self.spectateOutlineColor = getComputedStyle(document.documentElement).getPropertyValue("--spectate-player-highlighting-color");
 
         // Set placeholder text on the UI and add event listeners to cleanly
         // disconnect the socket if the panel is closed
@@ -580,7 +581,7 @@ class Spectator {
 
             // draw a little while circle around the "X" if it's highlighting
 
-            self.players[player.id].renderInfo = window.drawCross(canvas, ctx, x, y, color, maxRadius, player.id === self.spectatingID);
+            self.players[player.id].renderInfo = window.drawCross(canvas, ctx, x, y, color, maxRadius, player.id === self.spectatingID, self.spectateOutlineColor);
         }
     }
 
