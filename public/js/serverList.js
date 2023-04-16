@@ -22,4 +22,8 @@ systemListProvider.on("refresh", () => {
 
 preferencesManager.on("change", () => {
     requestAnimationFrame(refreshList);
+    // bad fix
+    setTimeout(() => {
+        requestAnimationFrame(refreshList);
+    }, 250);
 });
