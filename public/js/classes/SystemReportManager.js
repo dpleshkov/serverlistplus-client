@@ -37,8 +37,8 @@ class SystemReportManager {
 
         // Check if system mode supports live view
 
-        if (window.siteConfig.mode === "live" && (system.mode === "team" || (system.mode === "modding" && ["useries", "nauticseries", "alienintrusion"].includes(system.mod_id)))) {
-            document.getElementById("systemSpectateButton").style.display = "";
+        document.getElementById("systemSpectateButton").style.display = "none";
+        if (window.siteConfig.mode === "live" && (system.mode !== "invasion")) {
             document.getElementById("systemReportLink").classList.remove("rounded-end");
 
             document.getElementById("systemSpectateButton").onclick = () => {
@@ -49,6 +49,7 @@ class SystemReportManager {
 
             // show supported static api div
             document.getElementById("SR_StaticAPIRequired").style.display = "";
+            document.getElementById("SR_TeamModeRequired").style.display = "none";
             // Reset values
             document.getElementById("SR_ECPCount").innerText = "";
             document.getElementById("SR_TotalTeamScores").innerText = "";
@@ -58,19 +59,31 @@ class SystemReportManager {
             fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}`).then(async(response) => {
                 let info = await response.json();
                 if (info && info.players) {
+
                     let playerList = [];
-                    let teamECPCount = [];
-                    let teamScoreCount = [];
-                    for (let team of info.mode.teams) {
-                        teamECPCount.push(`${team.ecpCount} ${team.color}`);
-                        teamScoreCount.push(`${Math.floor(team.totalScore/1000)}k ${team.color}`);
-                    }
+                    let ecpCount = 0;
                     for (let player of Object.values(info.players)) {
                         playerList.push(player.player_name);
+                        if (player.custom) ecpCount++;
+                    }
+
+                    if (info.api && info.api.type === "rich" && (info.mode.id === "team" || (info.mode.id === "modding" && info.mode.root_mode === "team"))) {
+                        let teamScoreCount = [];
+                        let teamECPCount = [];
+                        for (let team of info.mode.teams) {
+                            teamECPCount.push(`${team.ecpCount} ${team.color}`);
+                            teamScoreCount.push(`${Math.floor(team.totalScore/1000)}k ${team.color}`);
+                        }
+
+                        document.getElementById("SR_TeamModeRequired").style.display = "";
+                        document.getElementById("SR_TotalTeamScores").innerText = teamScoreCount.join(", ");
+                        document.getElementById("SR_ECPCount").innerText = teamECPCount.join(", ");
+
+                        document.getElementById("systemSpectateButton").style.display = "";
+                    } else {
+                        document.getElementById("SR_ECPCount").innerText = String(ecpCount);
                     }
                     document.getElementById("SR_PlayerList").innerText = playerList.join(", ").replaceAll("\u202E", "");
-                    document.getElementById("SR_ECPCount").innerText = teamECPCount.join(", ");
-                    document.getElementById("SR_TotalTeamScores").innerText = teamScoreCount.join(", ");
                 }
             })
         } else {
