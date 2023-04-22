@@ -43,6 +43,9 @@
                 if (message.data === "quit") {
                     window.location.reload();
                 }
+                if (message.data === "toggle_fullscreen") {
+                    document.body.requestFullscreen();
+                }
             }
         }
         window.steam = false;
