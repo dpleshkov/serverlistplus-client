@@ -38,8 +38,7 @@ class SystemReportManager {
         // Check if system mode supports live view
 
         document.getElementById("systemSpectateButton").style.display = "none";
-        // temp disabling of dtm since player list seems to break the mod
-        if (window.siteConfig.mode === "live" && (system.mode !== "invasion") && (system.mod_id !== "dtm")) {
+        if (window.siteConfig.mode === "live" && (system.mode !== "invasion")) {
             document.getElementById("systemReportLink").classList.remove("rounded-end");
 
             document.getElementById("systemSpectateButton").onclick = () => {
