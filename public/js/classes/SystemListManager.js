@@ -64,8 +64,6 @@ class SystemListManager {
 
                 self.systemCards[system.id.toString()] = card;
 
-                self._sort();
-
                 /* Notify of new system if user has it enabled */
                 if (document.getElementById("newServerAlert").checked) {
                     (async() => {
@@ -90,10 +88,20 @@ class SystemListManager {
 
         for (let card of self.systemListElement.children) {
             if (!currentIds.has(card.dataset.system)) {
-                delete self.systemCards[card.dataset.system];
                 card.remove();
+                delete self.systemCards[card.dataset.system];
             }
         }
+
+        // For some reason, self.systemListElement.children sometimes doesn't include all the cards
+        for (let [id, card] of Object.entries(self.systemCards)) {
+            if (!currentIds.has(id)) {
+                card.remove();
+                delete self.systemCards[card.dataset.system];
+            }
+        }
+
+        self._sort();
 
     }
 
