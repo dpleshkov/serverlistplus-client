@@ -335,7 +335,11 @@ class Spectator {
             column.style.height = document.getElementById("spectatorCanvas").style.height;
 
             let title = document.createElement("h5");
-            title.innerText = translateColor(team.hue);
+            if (self.teams[teamIndex].open) {
+                title.innerHTML = `${translateColor(team.hue)} <i class="bi bi-unlock-fill"></i>`;
+            } else {
+                title.innerHTML = `${translateColor(team.hue)} <i class="bi bi-lock-fill"></i>`;
+            }
             title.className = "text-center m-0";
             column.appendChild(title);
 
