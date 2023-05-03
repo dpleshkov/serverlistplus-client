@@ -23,6 +23,7 @@ document.getElementById("navbarAboutButton").addEventListener("click", () => {
 
 document.getElementById("shareCustomGameCard").addEventListener("click", () => {
     shareGameModal.show();
+    document.getElementById("customGameLinkInput").value = "";
     document.getElementById("customGameLinkInput").focus();
 })
 
