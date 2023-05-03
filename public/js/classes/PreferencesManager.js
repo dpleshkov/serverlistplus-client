@@ -65,7 +65,7 @@ class PreferencesManager {
             }
             let preferences = {
                 region: "America",
-                modes: ["team", "survival", "deathmatch", "modding"],
+                modes: ["team", "survival", "deathmatch", "modding", "custom"],
                 theme: theme,
                 copyFullLinks: false,
                 centerMapOnAsteroids: false
