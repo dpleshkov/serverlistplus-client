@@ -9,8 +9,8 @@ let aboutModal = new bootstrap.Modal(document.getElementById('aboutModal'), {
 });
 
 let shareGameModal = new bootstrap.Modal(document.getElementById("shareGameModal"), {
-    keyboard: false,
-    backdrop: false
+    keyboard: true,
+    backdrop: true
 });
 
 document.getElementById("navbarSettingsButton").addEventListener("click", () => {
