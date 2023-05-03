@@ -138,3 +138,8 @@ h1, h2, h3, h4, h5, b {
     cursor: pointer;
     color: var(--spectate-leaderboard-highlighting-color);
 }
+
+/* Custom Game Modal */
+#customGameLinkInput {
+    font-family: monospace;
+}

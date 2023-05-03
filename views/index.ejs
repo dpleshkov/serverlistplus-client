@@ -55,6 +55,7 @@
 <%- include("./index/settings") %>
 <% if (config.site.mode === "live") { %>
     <%- include("./index/spectatorModal") %>
+    <%- include("./index/shareGameModal") %>
 <% } %>
 <div class="container" data-nosnippet>
     <!-- Navbar -->
@@ -140,7 +141,13 @@
             </div>
         </div>
         <!-- System List -->
-        <div class="col-sm-5" id="systemsList">
+        <div class="col-sm-5">
+            <div id="systemsList"></div>
+            <div class="card system-list-item" id="shareCustomGameCard">
+                <div class="card-body text-center user-select-none">
+                    <i class="bi bi-plus"></i> Share custom game
+                </div>
+            </div>
         </div>
         <!-- System Info -->
         <div class="col-sm-5" id="systemReport">

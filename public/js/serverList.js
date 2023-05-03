@@ -1,7 +1,9 @@
 
 let preferencesManager = new PreferencesManager();
 
-let systemListProvider = new SimStatusListProvider();
+let systemListProvider = new SimStatusListProvider({
+    endpoint: `${window.siteConfig["static-api-provider"]}simstatus.json`
+});
 
 let systemReportManager = new SystemReportManager(preferencesManager);
 
@@ -22,4 +24,31 @@ systemListProvider.on("refresh", () => {
 
 preferencesManager.on("change", () => {
     requestAnimationFrame(refreshList);
+});
+
+/* Logic for Custom Game Sharing */
+
+document.getElementById("shareCustomGame").addEventListener("click", async() => {
+    let url = document.getElementById("customGameLinkInput").value;
+    let response = await fetch(
+        `${window.siteConfig["static-api-provider"]}post`, {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                url: url
+            })
+        }
+    );
+    let json = await response.json();
+    console.log(json);
+    if (json.status === "success") {
+        shareGameModal.hide();
+        await systemListProvider._tick();
+        systemListManager._tick();
+    } else if (json.error) {
+        alert("Error in sharing game link.");
+        shareGameModal.hide();
+    }
 });

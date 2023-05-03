@@ -43,7 +43,7 @@ class SystemReportManager {
 
             document.getElementById("systemSpectateButton").onclick = () => {
                 if (window.activeSpectator !== undefined) window.activeSpectator.destroy();
-                window.activeSpectator = new Spectator(system.id);
+                window.activeSpectator = new Spectator(`${system.id}@${system.address}`);
                 Spectator.show();
             }
 
@@ -56,7 +56,7 @@ class SystemReportManager {
             document.getElementById("SR_PlayerList").innerText = "";
 
             // async fetch game info from static api
-            fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}`).then(async(response) => {
+            fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}@${system.address}`).then(async(response) => {
                 let info = await response.json();
                 if (info && info.players) {
 

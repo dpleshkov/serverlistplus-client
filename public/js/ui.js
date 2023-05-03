@@ -8,6 +8,11 @@ let aboutModal = new bootstrap.Modal(document.getElementById('aboutModal'), {
     keyboard: false
 });
 
+let shareGameModal = new bootstrap.Modal(document.getElementById("shareGameModal"), {
+    keyboard: false,
+    backdrop: false
+});
+
 document.getElementById("navbarSettingsButton").addEventListener("click", () => {
     settingsModal.show();
 });
@@ -15,6 +20,11 @@ document.getElementById("navbarSettingsButton").addEventListener("click", () => 
 document.getElementById("navbarAboutButton").addEventListener("click", () => {
     aboutModal.show();
 });
+
+document.getElementById("shareCustomGameCard").addEventListener("click", () => {
+    shareGameModal.show();
+    document.getElementById("customGameLinkInput").focus();
+})
 
 /* Responsive Scroll Height Setting */
 let _scrollify = function() {
@@ -37,3 +47,4 @@ document.getElementById("newServerAlert").addEventListener("change", () => {
         Notification.requestPermission().then();
     }
 });
+

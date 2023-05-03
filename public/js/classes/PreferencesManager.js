@@ -86,6 +86,12 @@ class PreferencesManager {
         }
 
         window.localStorage.setItem("preferences", JSON.stringify(preferences));
+
+        if (preferences.modes.includes("custom")) {
+            document.getElementById("shareCustomGameCard").style.display = "";
+        } else {
+            document.getElementById("shareCustomGameCard").style.display = "none";
+        }
     }
 
     renderPreferences(preferences) {
@@ -101,6 +107,12 @@ class PreferencesManager {
 
         for (let mode of ["team", "survival", "modding", "deathmatch", "invasion", "custom"]) {
             modeInputs[mode].checked = preferences.modes.includes(mode);
+        }
+
+        if (preferences.modes.includes("custom")) {
+            document.getElementById("shareCustomGameCard").style.display = "";
+        } else {
+            document.getElementById("shareCustomGameCard").style.display = "none";
         }
 
         /* Region */

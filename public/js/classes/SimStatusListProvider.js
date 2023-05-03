@@ -3,6 +3,7 @@ class SimStatusListProvider {
         const self = this;
 
         self.simStatus = [];
+        self.endpoint = options.endpoint || "https://starblast.io/simstatus.json";
         self.pollingRate = options.pollingRate || 10000;
 
         self.lastTick = Date.now() - self.pollingRate;
@@ -20,6 +21,7 @@ class SimStatusListProvider {
         for (let server of self.simStatus) {
             if (server.location === filters.region) {
                 for (let system of server.systems) {
+                    if (system.unlisted && !filters.modes.includes("custom")) continue;
                     if (filters.modes.includes(system.mode) && !system.survival) {
                         system.address = server.address;
                         system.region = server.location;
@@ -54,7 +56,7 @@ class SimStatusListProvider {
     async _tick() {
         const self = this;
 
-        let data = await fetch(`https://starblast.io/simstatus.json?cachebypass=${Math.random()}`);
+        let data = await fetch(self.endpoint);
         self.simStatus = await data.json();
 
         for (let handler of self.refreshEventListeners) {

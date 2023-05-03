@@ -314,10 +314,10 @@ class Spectator {
             spectateRow.removeChild(spectateRow.lastChild);
         }
 
-        let colClass = "col-sm-2 analysis-col px-1";
-        if (self.modeInfo.mode.friendly_colors === 2) {
+        let colClass = "col analysis-col px-1";
+        /*if (self.modeInfo.mode.friendly_colors === 2) {
             colClass = "col-sm-3 analysis-col px-1";
-        }
+        }*/
 
         // row.style.height = canvas.height + "px";
 
@@ -375,19 +375,23 @@ class Spectator {
             let displayShips = false;
             let firstShip;
 
-            if (self.modeInfo.mode.id === "modding") firstShip = JSON.parse(self.modeInfo.mode.ships[0]);
+            if (self.modeInfo.mode.unlisted) {
+                displayShips = false;
+            } else {
+                if (self.modeInfo.mode.id === "modding") firstShip = JSON.parse(self.modeInfo.mode.ships[0]);
 
-            if (self.modeInfo.mode.id === "team") {
-                displayShips = true;
-            } else if (firstShip.name === "U-Sniper Mk 2") {
-                shipFolder = "useries";
-                displayShips = true;
-            } else if (firstShip.name === "Snail") {
-                shipFolder = "nautic";
-                displayShips = true;
-            } else if (firstShip.name === "Fly_V2") {
-                shipFolder = "intrusion";
-                displayShips = true;
+                if (self.modeInfo.mode.id === "team") {
+                    displayShips = true;
+                } else if (firstShip.name === "U-Sniper Mk 2") {
+                    shipFolder = "useries";
+                    displayShips = true;
+                } else if (firstShip.name === "Snail") {
+                    shipFolder = "nautic";
+                    displayShips = true;
+                } else if (firstShip.name === "Fly_V2") {
+                    shipFolder = "intrusion";
+                    displayShips = true;
+                }
             }
 
             players.sort((a, b) => {return b.score - a.score});

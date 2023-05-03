@@ -12,12 +12,20 @@ class SystemListManager {
     }
 
     getCardHTML(system) {
-        let modeText = system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];
+        let modeText;
+        let modeIcon;
+        if (system.unlisted) {
+            modeIcon = Translation.modeIcons["custom"];
+            modeText = `Custom - ${Translation.modes[system.mode]}`;
+        } else {
+            modeIcon = Translation.modeIcons[system.mode];
+            modeText = system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];
+        }
 
         return `
             <div class="card-body">
                 <h3 class="mb-0">${system.name} <span class="float-end">${Math.floor(system.time/60)} min</span></h3>
-                <span>${Translation.modeIcons[system.mode]} ${modeText} <span class="float-end">${system.players} players</span></span>
+                <span>${modeIcon} ${modeText} <span class="float-end">${system.players} players</span></span>
             </div>
         `;
     }
