@@ -20,6 +20,7 @@ class SystemReportManager {
         document.getElementById("SR_PlayerCount").innerText = system.players;
 
         let systemURL = self.preferencesManager.preferences.copyFullLinks ? `https://starblast.io/#${system.id}@${system.address}` : `https://starblast.io/#${system.id}`;
+        if (system.unlisted) systemURL = `https://starblast.io/#${system.id}@${system.address}`;
 
         document.getElementById("systemCopyLink").onclick = () => {
             self._copyText(systemURL);
