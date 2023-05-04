@@ -16,7 +16,11 @@ class SystemListManager {
         let modeIcon;
         if (system.unlisted) {
             modeIcon = Translation.modeIcons["custom"];
-            modeText = `Custom - ${Translation.modes[system.mode]}`;
+            if (system.mode === "modding") {
+                modeText = "Custom Game"
+            } else {
+                modeText = `Custom Game - ${Translation.modes[system.mode]}`;
+            }
         } else {
             modeIcon = Translation.modeIcons[system.mode];
             modeText = system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];

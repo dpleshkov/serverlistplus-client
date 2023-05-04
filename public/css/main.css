@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, b {
 
 /* Scrollification */
 
-#systemReport, #systemsList, #viewOptions {
+#systemReport, #systemsListContainer, #viewOptions {
     overflow-y: scroll;
 }
 

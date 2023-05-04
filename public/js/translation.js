@@ -35,3 +35,15 @@ const Translation = {
         "unknown": "Unknown Mod"
     }
 }
+
+const getModeString = function(system) {
+    if (system.unlisted) {
+        if (system.mode === "modding") {
+            return "Custom Game"
+        } else {
+            return `Custom Game - ${Translation.modes[system.mode]}`;
+        }
+    } else {
+        return system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];
+    }
+}

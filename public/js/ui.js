@@ -31,7 +31,7 @@ document.getElementById("shareCustomGameCard").addEventListener("click", () => {
 let _scrollify = function() {
     let navbarHeight = document.getElementById("navbar").offsetHeight;
     let remainingSpace = window.innerHeight - navbarHeight;
-    document.getElementById("systemsList").style.maxHeight = `${remainingSpace}px`;
+    document.getElementById("systemsListContainer").style.maxHeight = `${remainingSpace}px`;
     document.getElementById("systemReport").style.maxHeight = `${remainingSpace}px`;
     document.getElementById("viewOptions").style.maxHeight = `${remainingSpace}px`;
 }

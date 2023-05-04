@@ -12,7 +12,7 @@ class SystemReportManager {
 
 
         document.getElementById("SR_Name").innerText = system.name;
-        document.getElementById("SR_Mode").innerText = system.mode === "modding" ? `${Translation.modes[system.mode]} - ${Translation.mods[system.mod_id]}` : Translation.modes[system.mode];
+        document.getElementById("SR_Mode").innerText = getModeString(system);
         document.getElementById("SR_Region").innerText = system.region;
         document.getElementById("SR_Time").innerText = `${Math.floor(system.time / 60)} min`;
         document.getElementById("SR_ID").innerText = `#${system.id}`;
