@@ -87,7 +87,7 @@ class PreferencesManager {
 
         window.localStorage.setItem("preferences", JSON.stringify(preferences));
 
-        if (preferences.modes.includes("modding")) {
+        if (preferences.modes.includes("custom")) {
             document.getElementById("shareCustomGameCard").style.display = "";
         } else {
             document.getElementById("shareCustomGameCard").style.display = "none";
@@ -109,7 +109,7 @@ class PreferencesManager {
             modeInputs[mode].checked = preferences.modes.includes(mode);
         }
 
-        if (preferences.modes.includes("modding")) {
+        if (preferences.modes.includes("custom")) {
             document.getElementById("shareCustomGameCard").style.display = "";
         } else {
             document.getElementById("shareCustomGameCard").style.display = "none";

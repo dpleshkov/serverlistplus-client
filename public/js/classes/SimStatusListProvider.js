@@ -21,7 +21,8 @@ class SimStatusListProvider {
         for (let server of self.simStatus) {
             if (server.location === filters.region) {
                 for (let system of server.systems) {
-                    if ((filters.modes.includes(system.mode) || (system.unlisted && filters.modes.includes("modding"))) && !system.survival) {
+                    if (system.unlisted && !filters.modes.includes("custom")) continue;
+                    if ((filters.modes.includes(system.mode) || (system.unlisted && filters.modes.includes("custom"))) && !system.survival) {
                         system.address = server.address;
                         system.region = server.location;
                         systems.push(system);
