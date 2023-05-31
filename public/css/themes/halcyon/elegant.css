@@ -1,0 +1,337 @@
+/* Elegant - Halcyon#2789 */
+
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=DM+Sans:wght@400;500;700&display=swap');
+
+body {
+    color-scheme: dark;
+    width: 100%;
+    height: 100vh;
+    padding: 2vh 0 2vh 0;
+    overflow: hidden;
+    color: white;background-color: #0b0b0b;
+background-size: 10px 10px;
+background-image: repeating-linear-gradient(45deg, #1a1a1a 0, #1a1a1a 1px, #0b0b0b 0, #0b0b0b 50%);
+} 
+
+* {
+    font-family: 'Abel', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', sans-serif;
+}
+
+h5 {
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+h5:first-of-type {padding: 0}
+
+
+.form-check-input:checked {
+    background: #040404;
+    box-shadow: white 0px 0px 2px;
+    border: 1px solid white;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: white;
+}
+
+.card {
+    background: transparent;
+    border-color: white;
+    padding: 0;
+    backdrop-filter: blur(3px) saturate(120%);
+    -webkit-backdrop-filter: blur(3px) saturate(120%);
+    background-color: rgba(17, 25, 40, 0);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    transition-duration: 0.2s;
+}
+
+.system-list-item {
+    margin-left: 0.5rem;
+}
+
+.system-list-item:hover {
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem !important;
+    box-shadow: #040404 0px 0.5rem 0px;
+    border: 1px solid rgba(255, 255, 255, 0.225);
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-3:first-of-type:hover {
+    margin-top: 0rem;
+    margin-bottom: 1.2rem !important;
+    box-shadow: black 0px 0.5rem 0px;
+    border: 1px solid rgba(255, 255, 255, 0.225);
+}
+
+.mb-3:first-of-type:active {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem;
+    box-shadow: rgb(0,0,0,0) 0px 0px 0px;
+    margin-bottom: 1rem !important;
+}
+
+.modal-content {
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(45deg, #1a1a1a 0, #1a1a1a 1px, #0b0b0b 0, #0b0b0b 50%);
+    box-sizing: content-box;
+    padding: 1rem 1rem 0 1rem !important;
+    border: 1px solid rgb(255,255,255,0.1);
+    transition-duration: 0.2s;
+}
+
+.bi {
+    filter: grayscale(100%) brightness(300%);
+}
+
+.btn-group {padding-top: 0.6rem !important}
+
+.btn-group > button, .w-90 {
+    border: 1px solid rgb(255,255,255,0.2) !important;
+    height: 2.3rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: #040404 0px 0.5rem 0px;
+    border: 1px solid rgba(255, 255, 255, 0.225);
+    transition-duration: 0.2s !important;
+}
+
+.btn-group > button:hover, .w-90:hover {
+    background-color: transparent;
+    border: 1px solid rgb(255,255,255,0.3) !important;
+}
+
+#systemCopyLink {
+    transition-duration: 0.2s !important;
+}
+
+#shareCustomGameCard > div {
+    margin-top: 0;
+    padding-top: 0.5rem;
+}
+
+@keyframes clicked {
+    from {
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+        box-shadow: #040404 0px 0.5rem 0px;
+        border: 1px solid rgba(255, 255, 255, 0.225);
+        background: transparent;
+    }
+    to {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        box-shadow: #040404 0px 0rem 0px;
+        border: 1px solid rgba(255, 255, 255, 0.225);
+        background: transparent;
+    }
+}
+
+.btn-group > button:active, .w-90:active {
+    animation: clicked 0.2s ease-out 0s 1;
+    animation-fill-mode: forwards;
+}
+
+
+.w-90 {
+    border: 1px solid rgb(255,255,255,0.2);
+    color:white;
+    font-family: "DM Sans";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    height: 2.3rem;
+}
+
+.modal-content:hover {
+    border: 1px solid rgb(255,255,255,0.225);
+}
+
+.modal-title {
+    width: 100%;
+    margin: 0;
+    margin-top: -0.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+#spectatorCanvas {
+    margin-left: -0.5rem !important;
+    border-radius: 0.5rem;
+}
+
+.mb-3:active {
+    margin-top: 0rem;
+    box-shadow: rgb(0,0,0,0) 0px 0px 0px;
+    margin-bottom: 1rem !important;
+}
+
+#systemsList > div > div > span {
+    opacity: 0.7;
+}
+
+.system-report-card:hover {
+    outline: 0;
+    border: 1px solid rgb(255,255,255,0.225);
+    transition-duration: 0.2s;
+}
+
+.card-body {
+    display: block;
+    padding: 1rem 1rem 0.4rem 1rem;
+}
+
+#systemReport > div > div {
+    padding-bottom: 1rem;
+}
+
+
+
+#systemsList {
+    overflow: visible;
+}
+
+#navbar > div > a.navbar-brand {
+    background: transparent;
+    border-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: -0.6rem;
+    backdrop-filter: blur(3px) saturate(120%);
+    -webkit-backdrop-filter: blur(3px) saturate(120%);
+    background-color: rgba(17, 25, 40, 0);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+#navbar > div > a.navbar-brand > b {
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    text-shadow: -1px -1px 0 #0e0e0e, 1px -1px 0 #0e0e0e, -1px 1px 0 #0e0e0e, 1px 1px 0 #0e0e0e, -2px 2px 0 white;
+}
+
+#systemReport > div > div > b, #systemReport > div > div > span {
+    width: 50%;
+    background: linear-gradient(#0e0e0e 49.9%,rgb(255,255,255,0.2) 50%, #0e0e0e 54%, #0e0e0e);
+    text-shadow: -3px -3px 0 #0e0e0e, 3px -3px 0 #0e0e0e, -3px 3px 0 #0e0e0e, 3px 3px 0 #0e0e0e;
+}
+
+#systemReport > div > div > b {
+    font-family: 'DM Sans', sans-serif;
+}
+
+#systemReport > div > div > span {text-align: right;}
+
+#SR_StaticAPIRequired {
+    font-family: 'DM Sans', sans-serif;
+}
+
+
+
+.mb-0 {
+    color: #fff;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #0e0e0e, 1px -1px 0 #0e0e0e, -1px 1px 0 #0e0e0e, 1px 1px 0 #0e0e0e, -2px 2px 0 white;
+}
+
+.mb-0 > span {
+    text-shadow: 0 0 0px;
+    position: absolute;
+    left: 0;
+    width: 85%;
+    left: 7.5%;
+    padding-top: 0.6rem;
+    top: 80%;
+    font-size: 1rem;
+    font-weight: thin;
+    letter-spacing: 0;
+    border-top: 1px solid rgb(255,255,255,0.1);
+    font-weight: 400;
+    opacity: 0.7;
+    text-transform:lowercase;
+}
+
+
+.float-end {
+    font-weight: 0;
+}
+
+.nav-link:hover {
+    color: #dddddd;
+    cursor: pointer;
+}
+
+
+#viewOptions {
+    background: transparent;
+    border-color: white;
+    padding: 0rem 1rem 1rem 1rem;
+    margin-right: 0rem;
+    backdrop-filter: blur(3px) saturate(120%);
+    -webkit-backdrop-filter: blur(3px) saturate(120%);
+    background-color: rgba(17, 25, 40, 0);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    transition-duration: 0.2s;
+    height: max-content;
+}
+
+#viewOptions:hover {
+    border: 1px solid rgba(255, 255, 255, 0.225)
+}
+
+#SR_StaticAPIRequired > b:nth-child(5) {
+    width: 100%;
+    text-align: center;
+    font-family: "DM Sans";
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(#0e0e0e 49.9%,rgb(255,255,255,0.2) 50%, #0e0e0e 54%, #0e0e0e);
+    text-shadow: -4px -4px 0 #0e0e0e, 4px -4px 0 #0e0e0e, -4px 4px 0 #0e0e0e, 4px 4px 0 #0e0e0e;
+
+}
+
+#SR_StaticAPIRequired > b:nth-child(5)::after {
+    content: ":";
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 0.25rem solid white;
+}
+
+
+:root {
+    --background-color: #0e0e0e;
+    --spectate-background-color: #202020;
+    --spectate-asteroids-color: white;
+    --spectate-player-highlighting-color: white;
+    --spectate-leaderboard-highlighting-color: cyan;
+    --ship-icons-filter: "";
+    --text-color: white;
+}
