@@ -59,7 +59,7 @@ class PreferencesManager {
     loadPreferences() {
         let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
         if (!storedPreferences) {
-            let theme = "/css/themes/default_light.css";
+            let theme = "/css/themes/default_dark.css";
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 theme = "/css/themes/default_dark.css";
             }
