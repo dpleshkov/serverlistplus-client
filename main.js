@@ -30,19 +30,15 @@ if (config.server.logging) {
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(express.static("./node_modules/bootstrap/dist"));
-app.use(express.static("./node_modules/bootstrap-icons/font"));
+app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
+app.use("/bootstrap-icons", express.static("./node_modules/bootstrap-icons/font"));
 
 app.get("/", (req, res) => {
-    res.render("index", {
-        config: config
-    });
+    res.render("index", config);
 });
 
 app.get("/app", (req, res) => {
-    res.render("app", {
-        config: config
-    });
+    res.render("app", config);
 })
 
 if (config.server.production) process.env.NODE_ENV = "production";

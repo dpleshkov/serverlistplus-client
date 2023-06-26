@@ -2,12 +2,15 @@
   "name": "serverlistplus-client",
   "version": "1.0.0",
   "dependencies": {
+    "@node-minify/core": "^8.0.6",
+    "@node-minify/html-minifier": "^8.0.6",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-minify": "^3.6.0"
   }
 }

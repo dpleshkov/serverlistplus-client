@@ -6,3 +6,8 @@ config.json
 package-lock.json
 
 views/index/analytics.ejs
+
+rust-server/target/
+rust-server/Cargo.lock
+
+views/*.html

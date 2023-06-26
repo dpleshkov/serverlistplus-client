@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Embed Metadata -->
-    <title>ServerList+ <% if (config.site.mode === "standalone") { %>Lite<% } %></title>
+    <title>ServerList+ <% if (site.mode === "standalone") { %>Lite<% } %></title>
 
     <meta name="description" content="ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
     <meta content="ServerList+" property="og:title">
@@ -20,23 +20,23 @@
     <meta name="theme-color" content="#EC2B7A">
 
     <!-- Site CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap-icons.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/themes/default_light.css" id="themeStylesheet">
 
     <!-- Site JS Libraries -->
-    <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/classes/PreferencesManager.js"></script>
     <script type="text/javascript" src="/js/classes/SimStatusListProvider.js"></script>
     <script type="text/javascript" src="/js/translation.js"></script>
     <script type="text/javascript" src="/js/classes/SystemListManager.js"></script>
     <script type="text/javascript" src="/js/classes/SystemReportManager.js"></script>
-    <% if (config.site.mode === "live") { %>
+    <% if (site.mode === "live") { %>
         <script type="text/javascript" src="/js/classes/SpectatorV2.js"></script>
     <% } %>
 
-    <% if (config.site.analytics.enabled) { %>
+    <% if (site.analytics.enabled) { %>
         <%- include("./index/analytics") %>
     <% } %>
 
@@ -46,14 +46,14 @@
 
     <!-- Site Mode -->
     <script type="text/javascript">
-        window.siteConfig = <%- JSON.stringify(config.site) %>;
+        window.siteConfig = <%- JSON.stringify(site) %>;
     </script>
 
 </head>
 <body>
 <%- include("./index/aboutModal") %>
 <%- include("./index/settings") %>
-<% if (config.site.mode === "live") { %>
+<% if (site.mode === "live") { %>
     <%- include("./index/spectatorModal") %>
     <%- include("./index/shareGameModal") %>
 <% } %>
@@ -63,9 +63,9 @@
         <div class="container-fluid px-0">
             <a class="navbar-brand">
                 <b>ServerList+</b>
-                <% if (config.site.mode === "standalone") { %>
+                <% if (site.mode === "standalone") { %>
                     <span>Lite</span>
-                <% } else if (config.site.mode === "live") { %>
+                <% } else if (site.mode === "live") { %>
                     <span>v2</span>
                 <% } %>
             </a>
@@ -128,7 +128,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="invasionMode">
                 <label class="form-check-label" for="invasionMode"><i class="bi bi-border"></i> Invasion</label>
             </div>
-            <div class="form-check <%= config.site.mode === "standalone" ? "d-none" : "" %>">
+            <div class="form-check <%= site.mode === "standalone" ? "d-none" : "" %>">
                 <input class="form-check-input" type="checkbox" value="" id="customMode">
                 <label class="form-check-label" for="customMode"><i class="bi bi-wrench"></i> Custom</label>
             </div>

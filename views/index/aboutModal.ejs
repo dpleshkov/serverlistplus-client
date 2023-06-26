@@ -5,10 +5,10 @@
                 <h5 class="text-center">ServerList+ v2</h5>
                 <hr class="m-1 pb-1">
                 <b class="float-start">Days Since Last Update</b>
-                <span class="float-end"><%= Math.floor((Date.now() - (config.revisionTime * 1000)) / 86400000) %> days</span>
+                <span class="float-end"><%= Math.floor((Date.now() - (revisionTime * 1000)) / 86400000) %> days</span>
                 <br>
                 <b class="float-start">Build ID</b>
-                <span class="float-end"><%= config.revision.substring(0, 7) %></span>
+                <span class="float-end"><%= revision.substring(0, 7) %></span>
                 <br>
                 <hr class="m-1 pb-1">
                 ServerList+ is a free tool created by <b>@dankdmitron</b> for displaying the status of active
