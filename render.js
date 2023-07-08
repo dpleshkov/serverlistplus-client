@@ -9,7 +9,7 @@ async function main() {
     config.site.revisionTime = require('child_process').execSync('git log -1 --format=%at').toString().trim();
 
     fs.writeFileSync("./public/index.html", await ejs.renderFile("./views/index.ejs", config));
-    fs.writeFileSync("./public/app.html", await ejs.renderFile("./views/index.ejs", config));
+    fs.writeFileSync("./public/app.html", await ejs.renderFile("./views/app.ejs", config));
 
     minify({
         compressor: htmlMinifier,
