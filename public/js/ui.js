@@ -18,6 +18,7 @@ document.getElementById("navbarSettingsButton").addEventListener("click", () => 
 });
 
 document.getElementById("navbarAboutButton").addEventListener("click", () => {
+    document.getElementById("timeSinceLastUpdate").innerText = `${Math.floor((Date.now() - (window.siteConfig.revisionTime * 1000)) / 86400000)} days`;
     aboutModal.show();
 });
 
