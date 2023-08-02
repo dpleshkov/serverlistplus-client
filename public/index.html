@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Embed Metadata -->
-    <title>ServerList <% if (site.mode === "standalone") { %>Lite<% } %></title>
+    <title>ServerList Lite</title>
 
     <meta name="description" content="ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
     <meta content="ServerList+" property="og:title">
@@ -32,13 +32,9 @@
     <script type="text/javascript" src="/js/translation.js"></script>
     <script type="text/javascript" src="/js/classes/SystemListManager.js"></script>
     <script type="text/javascript" src="/js/classes/SystemReportManager.js"></script>
-    <% if (site.mode === "live") { %>
-        <script type="text/javascript" src="/js/classes/SpectatorV2.js"></script>
-    <% } %>
+    
 
-    <% if (site.analytics.enabled) { %>
-        <%- include("./index/analytics") %>
-    <% } %>
+    
 
     <script type="text/javascript" src="/js/lib/mapGen.js"></script>
     <script type="text/javascript" src="/js/lib/renderingUtils.js"></script>
@@ -46,34 +42,95 @@
 
     <!-- Baked-in Site Config -->
     <script type="text/javascript">
-        window.siteConfig = <%- JSON.stringify(site) %>;
+        window.siteConfig = {"analytics":{"enabled":false,"tag":""},"mode":"standalone","live-api-provider":"wss://starblast.dankdmitron.dev/api/","static-api-provider":"https://starblast.dankdmitron.dev/api/","revisionTime":"1689490055"};
     </script>
 
 </head>
 <body>
-<%- include("./index/aboutModal") %>
-<%- include("./index/settings") %>
-<% if (site.mode === "live") { %>
-    <%- include("./index/spectatorModal") %>
-<% } %>
-<%- include("./index/shareGameModal") %>
+<div class="modal" tabindex="-1" id="aboutModal" data-nosnippet>
+    <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="text-center">ServerList+ v2</h5>
+                <hr class="m-1 pb-1">
+                <b class="float-start">Days Since Last Update</b>
+                <span class="float-end" id="timeSinceLastUpdate">0 days</span>
+                <br>
+                <b class="float-start">Build ID</b>
+                <span class="float-end">9223041</span>
+                <br>
+                <hr class="m-1 pb-1">
+                ServerList+ is a free tool created by <b>@dankdmitron</b> for displaying the status of active
+                <a class="no-underline" href="https://starblast.io">Starblast.io</a>
+                games. Special thanks goes out to:
+
+                <ul>
+                    <li><b>@bhpsngum</b> for providing code to render ECP badges</li>
+                    <li><b>AlbieMorrison#5416</b> for helping with obtaining ship icons</li>
+                    <li>All of those who have made themes for the old ServerList+</li>
+                </ul>
+                <hr class="m-1 pb-1">
+                <i>ServerList+ is in no way affiliated with or endorsed by Neuronality SARL.</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" id="settingsModal" data-nosnippet>
+    <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-check ps-0">
+                    <label class="form-check-label" for="preferenceCopyFullLink"><b>Use Full Links</b></label>
+                    <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCopyFullLink">
+                </div>
+                <div class="form-check ps-0  d-none ">
+                    <label class="form-check-label" for="preferenceCenterMapAsteroids"><b>Center Map on Asteroid Field</b></label>
+                    <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCenterMapAsteroids">
+                </div>
+                <label for="preferenceTheme" class="float-start pt-1"><b>Theme</b></label>
+                <select id="preferenceTheme" class="form-select-sm float-end">
+                    <option value="/css/themes/default_light.css">Light&nbsp</option>
+                    <option value="/css/themes/default_dark.css">Dark&nbsp</option>
+                    <option value="/css/themes/dankdmitron/1337.css">1337 by dankdmitron&nbsp</option>
+                    <option value="/css/themes/bhpsngum/starblast.css">Starblast by Bhpsngum&nbsp</option>
+                    <option value="/css/themes/caramel/blue.css">Blue by Caramel&nbsp</option>
+                    <option value="/css/themes/caramel/caramel.css">Caramel by Caramel&nbsp</option>
+                    <option value="/css/themes/caramel/pink-purple.css">Pink-Purple by Caramel&nbsp</option>
+                    <option value="/css/themes/caramel/purple.css">Purple by Caramel&nbsp</option>
+                    <option value="/css/themes/halcyon/elegant.css">Elegant by Halcyon&nbsp</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="shareGameModal" data-nosnippet>
+    <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5 class="text-center">Share Custom Game</h5>
+                <label for="customGameLinkInput" class="d-none"></label>
+                <div class="input-group">
+                    <input type="text" id="customGameLinkInput" class="form-control" autocomplete="off" autocapitalize="off" placeholder="https://starblast.io/#1234@123.123.123.123">
+                    <button class="btn btn-danger" id="shareCustomGame"><i class="bi bi-arrow-bar-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container" data-nosnippet>
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container-fluid px-0">
             <a class="navbar-brand">
                 <b>ServerList</b>
-                <% if (site.mode === "standalone") { %>
+                
                     <span>Lite</span>
-                <% } else if (site.mode === "live") { %>
-                    <span>+ v2</span>
-                <% } %>
+                
             </a>
-            <% if (site.mode === "standalone") { %>
+            
                 <a class="ms-auto me-2 nav-link nav-icon bi bi-pc-display" href="/app.html" title="Desktop App Port"></a>
-            <% } else if (site.mode === "live") { %>
-                <a class="ms-auto me-2 nav-link nav-icon bi bi-pc-display" href="/app" title="Desktop App Port"></a>
-            <% } %>
+            
             <a class="me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
             <a class="me-2 nav-link nav-icon bi bi-discord" href="https://discord.com/invite/5fs5bzxk4t"></a>
             <a class="me-2 nav-link nav-icon bi bi-gear-fill" id="navbarSettingsButton"></a>
@@ -132,7 +189,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="invasionMode">
                 <label class="form-check-label" for="invasionMode"><i class="bi bi-border"></i> Invasion</label>
             </div>
-            <div class="form-check <%= site.mode === "standalone" ? "d-none" : "" %>">
+            <div class="form-check d-none">
                 <input class="form-check-input" type="checkbox" value="" id="customMode">
                 <label class="form-check-label" for="customMode"><i class="bi bi-wrench"></i> Custom</label>
             </div>
@@ -144,13 +201,7 @@
                     Alert</label>
             </div>
             <br>
-            <% if (site.mode === "live") { %>
-                <small style="font-size: 0.75rem">ServerList+ listeners do not show up on game leaderboards. Any 👁️ you see is not ServerList+.</small>
-                <br>
-                <br>
-                <small style="font-size: 0.75rem">For issues regarding SL+ please either DM <b>@dankdmitron</b> on Discord or join the server linked at the top.
-                It appears to be a banned topic on the main Starblast Discord.</small>
-            <% } %>
+            
         </div>
         <!-- System List -->
         <div class="col-sm-5" id="systemsListContainer">

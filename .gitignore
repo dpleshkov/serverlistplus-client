@@ -11,4 +11,4 @@ rust-server/target/
 rust-server/Cargo.lock
 
 views/*.html
-public/*.html
+public/*.min.html
