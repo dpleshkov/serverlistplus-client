@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Embed Metadata -->
-    <title>ServerList <% if (site.mode === "standalone") { %>Lite<% } %></title>
+    <% if (site.mode === "standalone") { %>
+        <title>ServerList Lite</title>
+    <% } else if (site.mode === "live") { %>
+        <title>ServerList+</title>
+    <% } %>
 
     <meta name="description" content="ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
     <meta content="ServerList+" property="og:title">
@@ -62,11 +66,10 @@
     <nav class="navbar" id="navbar">
         <div class="container-fluid px-0">
             <a class="navbar-brand">
-                <b>ServerList</b>
                 <% if (site.mode === "standalone") { %>
-                    <span>Lite</span>
-                <% } else if (site.mode === "live") { %>
-                    <span>+ v2</span>
+                    <b>ServerList</b> Lite
+                <% } else if (site.mode === "live") { %><b></b>
+                    <b>ServerList+</b> v2
                 <% } %>
             </a>
             <% if (site.mode === "standalone") { %>
