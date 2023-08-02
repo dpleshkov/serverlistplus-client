@@ -1,28 +1,53 @@
-<div class="modal" tabindex="-1" id="aboutModal" data-nosnippet>
-    <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h5 class="text-center">ServerList+ v2</h5>
-                <hr class="m-1 pb-1">
-                <b class="float-start">Days Since Last Update</b>
-                <span class="float-end" id="timeSinceLastUpdate">0 days</span>
-                <br>
-                <b class="float-start">Build ID</b>
-                <span class="float-end"><%= revision.substring(0, 7) %></span>
-                <br>
-                <hr class="m-1 pb-1">
-                ServerList+ is a free tool created by <b>@dankdmitron</b> for displaying the status of active
-                <a class="no-underline" href="https://starblast.io">Starblast.io</a>
-                games. Special thanks goes out to:
 
-                <ul>
-                    <li><b>@bhpsngum</b> for providing code to render ECP badges</li>
-                    <li><b>AlbieMorrison#5416</b> for helping with obtaining ship icons</li>
-                    <li>All of those who have made themes for the old ServerList+</li>
-                </ul>
-                <hr class="m-1 pb-1">
-                <i>ServerList+ is in no way affiliated with or endorsed by Neuronality SARL.</i>
+<% if (site.mode === "standalone") { %>
+    <div class="modal" tabindex="-1" id="aboutModal" data-nosnippet>
+        <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="text-center">ServerList Lite</h5>
+                    <hr class="m-1 pb-1">
+                    <b class="float-start">Days Since Last Update</b>
+                    <span class="float-end" id="timeSinceLastUpdate">0 days</span>
+                    <br>
+                    <b class="float-start">Build ID</b>
+                    <span class="float-end"><%= revision.substring(0, 7) %></span>
+                    <br>
+                    <hr class="m-1 pb-1">
+                    ServerList Lite is a free tool created by <b>@dankdmitron</b> for displaying the status of active
+                    <a class="no-underline" href="https://starblast.io">Starblast.io</a>
+                    games.
+                    <i>ServerList Lite is in no way affiliated with or endorsed by Neuronality SARL.</i>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<% } else if (site.mode === "live") { %>
+    <div class="modal" tabindex="-1" id="aboutModal" data-nosnippet>
+        <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="text-center">ServerList+ v2</h5>
+                    <hr class="m-1 pb-1">
+                    <b class="float-start">Days Since Last Update</b>
+                    <span class="float-end" id="timeSinceLastUpdate">0 days</span>
+                    <br>
+                    <b class="float-start">Build ID</b>
+                    <span class="float-end"><%= revision.substring(0, 7) %></span>
+                    <br>
+                    <hr class="m-1 pb-1">
+                    ServerList+ is a free tool created by <b>@dankdmitron</b> for displaying the status of active
+                    <a class="no-underline" href="https://starblast.io">Starblast.io</a>
+                    games. Special thanks goes out to:
+
+                    <ul>
+                        <li><b>@bhpsngum</b> for providing code to render ECP badges</li>
+                        <li><b>AlbieMorrison#5416</b> for helping with obtaining ship icons</li>
+                        <li>All of those who have made themes for the old ServerList+</li>
+                    </ul>
+                    <hr class="m-1 pb-1">
+                    <i>ServerList+ is in no way affiliated with or endorsed by Neuronality SARL.</i>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
