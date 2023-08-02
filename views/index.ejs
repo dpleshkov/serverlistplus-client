@@ -8,29 +8,45 @@
     <!-- Embed Metadata -->
     <% if (site.mode === "standalone") { %>
         <title>ServerList Lite</title>
+        <meta name="description" content="ServerList Lite is a minimal alternative to Loveship's Shipyard, distinguishing between modding space mods and allowing users to share private games.">
+        <meta content="ServerList Lite" property="og:title">
+        <meta content="starblast-server-list.github.io" property="og:site_name">
+        <meta content='/img/dankdmitron.png' property='og:image'>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://starblast-server-list.github.io"/>
+        <meta name="twitter:title" content="ServerList Lite"/>
+        <meta name="twitter:description" content="ServerList Lite is a minimal alternative to Loveship's Shipyard, distinguishing between modding space mods and allowing users to share private games."/>
+        <meta name="twitter:image" content="/dankdmitron.png"/>
+        <meta name="theme-color" content="#EC2B7A">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <% } else if (site.mode === "live") { %>
         <title>ServerList+</title>
+        <meta name="description" content="Surpassing Loveship's Shipyard since 2021, ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
+        <meta content="ServerList+" property="og:title">
+        <meta content="starblast.dankdmitron.dev" property="og:site_name">
+        <meta content='/img/dankdmitron.png' property='og:image'>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:site" content="https://starblast.dankdmitron.dev"/>
+        <meta name="twitter:title" content="ServerList+"/>
+        <meta name="twitter:description" content="Surpassing Loveship's Shipyard since 2021, ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes."/>
+        <meta name="twitter:image" content="/dankdmitron.png"/>
+        <meta name="theme-color" content="#EC2B7A">
+
+        <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
     <% } %>
 
-    <meta name="description" content="ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
-    <meta content="ServerList+" property="og:title">
-    <meta content="starblast.dankdmitron.dev" property="og:site_name">
-    <meta content='/img/dankdmitron.png' property='og:image'>
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:site" content="https://starblast.dankdmitron.dev"/>
-    <meta name="twitter:title" content="ServerList+"/>
-    <meta name="twitter:description" content="ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes."/>
-    <meta name="twitter:image" content="/dankdmitron.png"/>
-    <meta name="theme-color" content="#EC2B7A">
-
     <!-- Site CSS -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
+    <style>
+        <%- include("../node_modules/bootstrap/dist/css/bootstrap.min.css") %>
+    </style>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/themes/default_light.css" id="themeStylesheet">
 
     <!-- Site JS Libraries -->
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        <%- include("../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js") %>
+    </script>
     <script type="text/javascript" src="/js/classes/PreferencesManager.js"></script>
     <script type="text/javascript" src="/js/classes/SimStatusListProvider.js"></script>
     <script type="text/javascript" src="/js/translation.js"></script>
