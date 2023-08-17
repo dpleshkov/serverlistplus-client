@@ -69,7 +69,7 @@ class Spectator {
         window.activeSpectator = self;
 
         // prepare canvas event
-
+        /*
         let canvas = document.querySelector("#spectatorCanvas");
 
         canvas.onmousemove = function (e) {
@@ -104,6 +104,7 @@ class Spectator {
         canvas.onmouseout = function () {
             self.spectatingID = null;
         };
+         */
     }
 
     bindWebSocket(systemId) {
@@ -447,13 +448,13 @@ class Spectator {
                     </span>
                 `);
 
-                col.addEventListener("mouseover", function (e) {
+                /*col.addEventListener("mouseover", function (e) {
                     self.spectatingID = playerID;
                 });
 
                 col.addEventListener("mouseout", function (e) {
                     if (self.spectatingID === playerID) self.spectatingID = null;
-                });
+                });*/
 
                 column.appendChild(col);
                 column.insertAdjacentHTML('beforeend', "<br>");
@@ -552,6 +553,7 @@ class Spectator {
 
             let rgb = hsv2rgb(team.hue, S, V);
             ctx.strokeStyle = `rgb(${rgb[0]*255}, ${rgb[1]*255}, ${rgb[2]*255})`;
+            ctx.strokeWidth = 1;
             ctx.fillStyle = `rgb(${rgb[0]*255}, ${rgb[1]*255}, ${rgb[2]*255})`;
             ctx.beginPath();
             // ctx.rect(canvas.width / 2 + x - 4 * maxRadius, canvas.width / 2 + y - 4 * maxRadius, 8 * maxRadius, 8 * maxRadius);
@@ -565,7 +567,7 @@ class Spectator {
                 cy = (cy + (canvas.width / 2)) % canvas.width;
             }
 
-            roundRect(ctx, cx, cy, 8 * maxRadius, 8 * maxRadius, maxRadius, true);
+            roundRect(ctx, cx, cy, 8 * maxRadius, 8 * maxRadius, maxRadius, true, false);
             ctx.fill();
         }
 
@@ -585,10 +587,12 @@ class Spectator {
             let x = (player.x / (self.modeInfo.mode.map_size * 5)) * (canvas.width / 2);
             let y = -(player.y / (self.modeInfo.mode.map_size * 5)) * (canvas.height / 2);
 
+            let c = hsv2rgb(profile.hue, S, V);
             let color = hsv2hex(profile.hue, S, V);
 
-            // draw a little while circle around the "X" if it's highlighting
+            // window.drawTransparentCircle(canvas, ctx, x, y, `rgba(${c[0]*255}, ${c[1]*255}, ${c[2]*255}, 0.5)`, 10, maxRadius);
 
+            // draw a little while circle around the "X" if it's highlighting
             self.players[player.id].renderInfo = window.drawCross(canvas, ctx, x, y, color, maxRadius, player.id === self.spectatingID, self.spectateOutlineColor);
         }
     }

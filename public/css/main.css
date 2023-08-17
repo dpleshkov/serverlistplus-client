@@ -134,8 +134,12 @@ h1, h2, h3, h4, h5, b {
 
 /* Player Highlighting */
 
-.player-view-box:hover, .highlighted {
+/*.player-view-box:hover, .highlighted {
     cursor: pointer;
+    color: var(--spectate-leaderboard-highlighting-color);
+}*/
+
+.highlighted {
     color: var(--spectate-leaderboard-highlighting-color);
 }
 

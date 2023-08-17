@@ -94,6 +94,14 @@ window.drawCross = function(canvas, ctx, x, y, color, maxRadius, isTarget, outli
     return pos;
 }
 
+window.drawTransparentCircle = function(canvas, ctx, x, y, color, radius, maxRadius) {
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2 + x, canvas.width / 2 + y, radius * maxRadius, 0, 2*Math.PI);
+    ctx.fill();
+}
+
 const shortestPath = function(x1, y1, x2, y2, mapSize) {
     let dx = x2 - x1;
     if (dx < mapSize * -5) {

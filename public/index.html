@@ -7,22 +7,22 @@
 
     <!-- Embed Metadata -->
     
-        <title>ServerList Lite</title>
-        <meta name="description" content="ServerList Lite is a minimal alternative to Loveship's Shipyard, distinguishing between modding space mods and allowing users to share private games.">
-        <meta content="ServerList Lite" property="og:title">
-        <meta content="starblast-server-list.github.io" property="og:site_name">
+        <title>ServerList+</title>
+        <meta name="description" content="Surpassing Loveship's Shipyard since 2021, ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes.">
+        <meta content="ServerList+" property="og:title">
+        <meta content="starblast.dankdmitron.dev" property="og:site_name">
         <meta content='/img/dankdmitron.png' property='og:image'>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:site" content="https://starblast-server-list.github.io"/>
-        <meta name="twitter:title" content="ServerList Lite"/>
-        <meta name="twitter:description" content="ServerList Lite is a minimal alternative to Loveship's Shipyard, distinguishing between modding space mods and allowing users to share private games."/>
+        <meta name="twitter:site" content="https://starblast.dankdmitron.dev"/>
+        <meta name="twitter:title" content="ServerList+"/>
+        <meta name="twitter:description" content="Surpassing Loveship's Shipyard since 2021, ServerList+ is the most advanced server list website for Starblast.io yet, featuring player listing as well as analysis and live views of team mode games. Created by @dankdmitron, ServerList+ is regularly updated with features and bug fixes."/>
         <meta name="twitter:image" content="/dankdmitron.png"/>
         <meta name="theme-color" content="#EC2B7A">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+        <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+    
 
     <!-- Site CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -35,6 +35,8 @@
     <script type="text/javascript" src="/js/classes/SystemListManager.js"></script>
     <script type="text/javascript" src="/js/classes/SystemReportManager.js"></script>
     
+        <script type="text/javascript" src="/js/classes/SpectatorV2.js"></script>
+    
 
     
 
@@ -44,7 +46,7 @@
 
     <!-- Baked-in Site Config -->
     <script type="text/javascript">
-        window.siteConfig = {"analytics":{"enabled":false},"mode":"standalone","live-api-provider":"wss://starblast.dankdmitron.dev/api/","static-api-provider":"https://starblast.dankdmitron.dev/api/","revisionTime":"1690966521"};
+        window.siteConfig = {"analytics":{"enabled":false},"mode":"live","live-api-provider":"wss://starblast.dankdmitron.dev/api/","static-api-provider":"https://starblast.dankdmitron.dev/api/","revisionTime":"1691006139"};
     </script>
 
 </head>
@@ -55,19 +57,26 @@
         <div class="modal-dialog d-flex flex-column min-vh-100 justify-content-center align-items-center">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h5 class="text-center">ServerList Lite</h5>
+                    <h5 class="text-center">ServerList+ v2</h5>
                     <hr class="m-1 pb-1">
                     <b class="float-start">Days Since Last Update</b>
                     <span class="float-end" id="timeSinceLastUpdate">0 days</span>
                     <br>
                     <b class="float-start">Build ID</b>
-                    <span class="float-end">faf4f2b</span>
+                    <span class="float-end">08cfcaf</span>
                     <br>
                     <hr class="m-1 pb-1">
-                    ServerList Lite is a free tool created by <b>@dankdmitron</b> for displaying the status of active
+                    ServerList+ is a free tool created by <b>@dankdmitron</b> for displaying the status of active
                     <a class="no-underline" href="https://starblast.io">Starblast.io</a>
-                    games.
-                    <i>ServerList Lite is in no way affiliated with or endorsed by Neuronality SARL.</i>
+                    games. Special thanks goes out to:
+
+                    <ul>
+                        <li><b>@bhpsngum</b> for providing code to render ECP badges</li>
+                        <li><b>AlbieMorrison#5416</b> for helping with obtaining ship icons</li>
+                        <li>All of those who have made themes for the old ServerList+</li>
+                    </ul>
+                    <hr class="m-1 pb-1">
+                    <i>ServerList+ is in no way affiliated with or endorsed by Neuronality SARL.</i>
                 </div>
             </div>
         </div>
@@ -81,7 +90,7 @@
                     <label class="form-check-label" for="preferenceCopyFullLink"><b>Use Full Links</b></label>
                     <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCopyFullLink">
                 </div>
-                <div class="form-check ps-0  d-none ">
+                <div class="form-check ps-0 ">
                     <label class="form-check-label" for="preferenceCenterMapAsteroids"><b>Center Map on Asteroid Field</b></label>
                     <input class="form-check-input float-end" type="checkbox" name="preferenceCopyFullLink" id="preferenceCenterMapAsteroids">
                 </div>
@@ -97,6 +106,23 @@
                     <option value="/css/themes/caramel/purple.css">Purple by Caramel&nbsp</option>
                     <option value="/css/themes/halcyon/elegant.css">Elegant by Halcyon&nbsp</option>
                 </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal" tabindex="-1" id="spectatorModal" data-nosnippet>
+    <div class="modal-dialog mt-0 modal-xl d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="spectatorModalTitle">Spectating: ???</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="spectateRow">
+                    <div class="col-sm-6 px-0">
+                        <canvas id="spectatorCanvas"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -121,12 +147,12 @@
     <nav class="navbar" id="navbar">
         <div class="container-fluid px-0">
             <a class="navbar-brand">
-                
-                    <b>ServerList</b> Lite
+                <b></b>
+                    <b>ServerList+</b> v2
                 
             </a>
             
-                <a class="ms-auto me-2 nav-link nav-icon bi bi-pc-display" href="/app.html" title="Desktop App Port"></a>
+                <a class="ms-auto me-2 nav-link nav-icon bi bi-pc-display" href="/app" title="Desktop App Port"></a>
             
             <a class="me-2 nav-link nav-icon bi bi-github" href="https://github.com/dpleshkov/serverlistplus-client"></a>
             <a class="me-2 nav-link nav-icon bi bi-discord" href="https://discord.com/invite/5fs5bzxk4t"></a>
@@ -198,6 +224,8 @@
                     Alert</label>
             </div>
             <br>
+            
+                <small style="font-size: 0.75rem">ServerList+ listeners do not show up on game leaderboards. Any 👁️ you see is not ServerList+.</small>
             
         </div>
         <!-- System List -->
