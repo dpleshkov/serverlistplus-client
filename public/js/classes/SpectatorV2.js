@@ -569,6 +569,29 @@ class Spectator {
 
             roundRect(ctx, cx, cy, 8 * maxRadius, 8 * maxRadius, maxRadius, true, false);
             ctx.fill();
+
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(cx+5.75*maxRadius, cy+2.25*maxRadius, 1.1*maxRadius, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(cx+5.75*maxRadius, cy+5.75*maxRadius, 1.1*maxRadius, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(cx+2.25*maxRadius, cy+4*maxRadius, 1.1*maxRadius, 0, 2*Math.PI);
+            ctx.fill();
+            ctx.closePath();
+            ctx.lineWidth = maxRadius/2;
+            ctx.beginPath();
+            ctx.moveTo(cx+5.75*maxRadius, cy+2.25*maxRadius);
+            ctx.lineTo(cx+2.25*maxRadius, cy+4*maxRadius);
+            ctx.lineTo(cx+5.75*maxRadius, cy+5.75*maxRadius);
+            ctx.stroke();
+            ctx.closePath();
+            ctx.globalCompositeOperation = "source-over";
         }
 
         // Render players
