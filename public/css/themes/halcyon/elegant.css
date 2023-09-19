@@ -200,6 +200,10 @@ h5:first-of-type {padding: 0}
     overflow: visible;
 }
 
+#systemsListContainer {
+    padding-bottom: 1rem;
+}
+
 #navbar > div > a.navbar-brand {
     background: transparent;
     border-color: white;
@@ -328,7 +332,7 @@ h5:first-of-type {padding: 0}
 
 :root {
     --background-color: #0e0e0e;
-    --spectate-background-color: #202020;
+    --spectate-background-color: transparent;
     --spectate-asteroids-color: white;
     --spectate-player-highlighting-color: white;
     --spectate-leaderboard-highlighting-color: cyan;

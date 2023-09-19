@@ -103,3 +103,17 @@ body {
 .nav-link:hover {
     color: #cccccc;
 }
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 0.25rem;
+    border: 0.25rem solid #cccccc;
+}

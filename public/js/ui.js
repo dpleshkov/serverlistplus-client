@@ -50,3 +50,5 @@ document.getElementById("newServerAlert").addEventListener("change", () => {
     }
 });
 
+// fix to chrome scroll bug where on some themes scrollbar still shows, likely due to themes changing size of webpage by a minimal amount
+setTimeout(_scrollify, 20);

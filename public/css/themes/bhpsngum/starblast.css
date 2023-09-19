@@ -58,6 +58,8 @@
 body {
     color-scheme: dark;
     background-image: url("https://starblast.io/static/img/bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: "Play", sans-serif;
     color: var(--sb-color);
     overflow-y: hidden;
@@ -126,4 +128,8 @@ body {
     border-radius: 0;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
     background-color: hsla(200, 50%, 70%, .5);
+}
+
+#shareCustomGameCard {
+    margin-top: 0.25rem;
 }

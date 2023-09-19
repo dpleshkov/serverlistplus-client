@@ -91,3 +91,17 @@ body {
     outline-style: none;
     box-shadow: none;
 }
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 0.25rem;
+    border: 0.25rem solid black;
+}

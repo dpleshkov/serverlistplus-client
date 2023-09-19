@@ -128,3 +128,17 @@ body {
 .navbar-brand, .navbar-brand:hover {
     color: var(--text-color);
 }
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 0.25rem;
+    border: 0.25rem solid #cccccc;
+}
