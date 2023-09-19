@@ -105,7 +105,7 @@ body {
 
 :root {
     --background-color: #202020;
-    --spectate-background-color: #202020;
+    --spectate-background-color: transparent;
     --spectate-asteroids-color: white;
     --spectate-player-highlighting-color: white;
     --spectate-leaderboard-highlighting-color: yellow;
@@ -131,5 +131,9 @@ body {
 }
 
 #shareCustomGameCard {
+    margin-top: 0.25rem;
+}
+
+.system-report-card {
     margin-top: 0.25rem;
 }
