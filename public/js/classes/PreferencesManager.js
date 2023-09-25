@@ -58,6 +58,11 @@ class PreferencesManager {
 
     loadPreferences() {
         let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
+        // Re-write cached root-relative theme to be relative path instead
+        if (storedPreferences.theme && storedPreferences.theme.startsWith("/")) {
+            storedPreferences.theme = "." + storedPreferences.theme;
+            this.savePreferences(storedPreferences);
+        }
         if (!storedPreferences) {
             let theme = "./css/themes/default_dark.css";
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
