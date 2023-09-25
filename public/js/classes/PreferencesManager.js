@@ -2,11 +2,11 @@ class PreferencesManager {
     constructor() {
         const self = this;
 
-        self.preferences = self.loadPreferences();
-        self.renderPreferences(self.preferences);
-
         self.onchange = function() {};
         self.changeEventListeners = new Set();
+
+        self.preferences = self.loadPreferences();
+        self.renderPreferences(self.preferences);
 
         /* Mode Select Bindings */
         for (let mode of ["team", "survival", "deathmatch", "modding", "custom", "invasion"]) {
@@ -59,10 +59,6 @@ class PreferencesManager {
     loadPreferences() {
         let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
         // Re-write cached root-relative theme to be relative path instead
-        if (storedPreferences.theme && storedPreferences.theme.startsWith("/")) {
-            storedPreferences.theme = "." + storedPreferences.theme;
-            this.savePreferences(storedPreferences);
-        }
         if (!storedPreferences) {
             let theme = "./css/themes/default_dark.css";
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -77,6 +73,9 @@ class PreferencesManager {
             }
             window.localStorage.setItem("preferences", JSON.stringify(preferences));
             return preferences;
+        } else if (storedPreferences.theme && storedPreferences.theme.startsWith("/")) {
+            storedPreferences.theme = "." + storedPreferences.theme;
+            this.savePreferences(storedPreferences);
         }
         return storedPreferences;
     }
@@ -84,7 +83,7 @@ class PreferencesManager {
     savePreferences(preferences) {
         const self = this;
 
-        if (self.onchange) self.onchange(preferences);
+        self.onchange(preferences);
 
         for (let handler of self.changeEventListeners) {
             handler(preferences);
