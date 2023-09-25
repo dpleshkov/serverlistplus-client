@@ -48,8 +48,8 @@ const config = {
         // to "live"
         
         "mode": "standalone",
-        "live-api-provider": "wss://api.starblast.dankdmitron.dev:7340/",
-        "static-api-provider": "https://api.starblast.dankdmitron.dev:7340/"
+        "live-api-provider": "wss://api.starblast.dankdmitron.dev/",
+        "static-api-provider": "https://api.starblast.dankdmitron.dev/"
     }
 }
 ```
