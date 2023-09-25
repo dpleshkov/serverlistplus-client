@@ -4,7 +4,7 @@
       "enabled": false
     },
     "mode": "live",
-    "live-api-provider": "wss://api.starblast.dankdmitron.dev:7340/",
-    "static-api-provider": "https://api.starblast.dankdmitron.dev:7340/"
+    "live-api-provider": "wss://api.starblast.dankdmitron.dev/api/",
+    "static-api-provider": "https://api.starblast.dankdmitron.dev/api/"
   }
 }
