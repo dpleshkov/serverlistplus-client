@@ -34,8 +34,8 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3.8.1
       - run: npm install
-      - run: npm run build
       - run: cp config.example.json config.json
+      - run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
