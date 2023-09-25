@@ -12,3 +12,5 @@ rust-server/Cargo.lock
 
 views/*.html
 public/*.min.html
+public/index.html
+public/app.html

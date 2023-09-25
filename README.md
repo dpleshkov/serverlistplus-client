@@ -22,21 +22,18 @@ npm install
 Then, copy `config.example.json` to `config.json` and edit the config
 file.
 
-Run using
+Compile the site using
 
 ```bash
-node main.js
+npm run build
 ```
+
+Then open `public/index.html` to see the ServerList+ webpage.
 
 Explanation of config values (do not copy-paste the `const config =`):
 
 ```js
 const config = {
-    "server": {
-        "port": 3000, // port on which to run the webserver
-        "logging": true, // whether to log requests or not
-        "production": false // whether the server is running in production or not
-    },
     "site": {
         "analytics": {
             // if you want to enable site analytics, set this to true

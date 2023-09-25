@@ -1,13 +1,13 @@
 /* Fonts */
 @font-face {
     font-family: "Nunito Sans Bold";
-    src: url("/fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf");
+    src: url("../fonts/Nunito_Sans/NunitoSans-ExtraBold.ttf");
     font-display: swap;
 }
 
 @font-face {
     font-family: 'SBGlyphs';
-    src: url('/fonts/Starblast/starblast-glyphs.ttf');
+    src: url('../fonts/Starblast/starblast-glyphs.ttf');
     font-weight: normal;
     font-style: normal
 }
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: "Nunito Sans";
-    src: url("/fonts/Nunito_Sans/NunitoSans-Regular.ttf");
+    src: url("../fonts/Nunito_Sans/NunitoSans-Regular.ttf");
     font-display: swap;
 }
 
@@ -30,7 +30,7 @@
 
 @font-face {
     font-family: "Starblast Vanilla Ships";
-    src: url("/fonts/Starblast/starblast-vanilla-ships.ttf");
+    src: url("../fonts/Starblast/starblast-vanilla-ships.ttf");
     font-display: swap;
 }
 
@@ -40,7 +40,7 @@
 
 @font-face {
     font-family: "Starblast Intrusion Ships";
-    src: url("/fonts/Starblast/starblast-intrusion-ships.ttf");
+    src: url("../fonts/Starblast/starblast-intrusion-ships.ttf");
     font-display: swap;
 }
 
@@ -50,7 +50,7 @@
 
 @font-face {
     font-family: "Starblast U-Series Ships";
-    src: url("/fonts/Starblast/starblast-useries-ships.ttf");
+    src: url("../fonts/Starblast/starblast-useries-ships.ttf");
     font-display: swap;
 }
 
@@ -60,7 +60,7 @@
 
 @font-face {
     font-family: "Starblast Nautic Ships";
-    src: url("/fonts/Starblast/starblast-nautic-ships.ttf");
+    src: url("../fonts/Starblast/starblast-nautic-ships.ttf");
     font-display: swap;
 }
 

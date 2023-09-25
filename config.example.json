@@ -1,14 +1,9 @@
 {
-  "server": {
-    "port": 3000,
-    "logging": true,
-    "production": false
-  },
   "site": {
     "analytics": {
       "enabled": false
     },
-    "mode": "standalone",
+    "mode": "live",
     "live-api-provider": "wss://api.starblast.dankdmitron.dev:7340/",
     "static-api-provider": "https://api.starblast.dankdmitron.dev:7340/"
   }
