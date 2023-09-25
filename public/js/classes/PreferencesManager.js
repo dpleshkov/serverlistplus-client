@@ -84,7 +84,7 @@ class PreferencesManager {
     savePreferences(preferences) {
         const self = this;
 
-        self.onchange(preferences);
+        if (self.onchange) self.onchange(preferences);
 
         for (let handler of self.changeEventListeners) {
             handler(preferences);
