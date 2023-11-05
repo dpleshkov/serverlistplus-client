@@ -66,7 +66,7 @@ class PreferencesManager {
                 modes: ["team", "survival", "deathmatch", "modding", "custom"],
                 copyFullLinks: false,
                 centerMapOnAsteroids: false,
-                theme: self.themeManager.getDefaultOptions()
+                theme: {}
             }
             window.localStorage.setItem("preferences", JSON.stringify(preferences));
             return preferences;

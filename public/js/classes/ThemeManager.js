@@ -30,21 +30,25 @@ class ThemeManager {
 		return theme;
 	}
 
-	getDefaultOptions() {
-		const self = this;
-		return {
-			value: self.determineThemeTone(),
-			custom: false,
-			customValue: 0,
-			customList: []
-		}
-	}
-
 	validateOptions (save = false, init = false, apply = false) {
 		// validate options, save if needed
 
-		const self = this, options = self.options;
+		const self = this;
 		let changed = false;
+		if (self.options == null || "object" != typeof self.options) {
+			changed = true;
+			let oldTheme = self.options;
+			self.options = {};
+			if ("string" == typeof oldTheme) {
+				// convert fixed link to relative link
+				if (oldTheme.startsWith("/")) oldTheme = "." + oldTheme;
+
+				// preserve selection from old theme preference
+				self.options.value = (self.themes.find(t => t.link == oldTheme) || {}).name || '';
+			}
+		}
+
+		const { options } = self;
 		// validate selected theme
 		let theme = options.value ? self.themes.find(t => t.name == options.value) : null;
 		if (theme != null) {
@@ -70,9 +74,12 @@ class ThemeManager {
 
 		// validate each custom theme
 		for (let customTheme of customList) {
-			if (!customTheme) {
+			if (customTheme == null || "object" != typeof customTheme) {
 				changed = true;
-				options.customList.push({});
+				let newTheme = {};
+				// convert from string of theme code to theme object
+				if ("string" == typeof customTheme) newTheme.code = customTheme;
+				options.customList.push(newTheme);
 			}
 			else options.customList.push(customTheme);
 		}
@@ -100,6 +107,10 @@ class ThemeManager {
 
 	get options () {
 		return this.preferencesManager.preferences.theme;
+	}
+
+	set options (val) {
+		this.preferencesManager.preferences.theme = val;
 	}
 
 	saveOptions () {
