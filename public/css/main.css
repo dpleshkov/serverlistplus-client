@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, b {
     display: flex;
     align-items: center;
     overflow: auto hidden;
-    margin-bottom: 5%;
+    margin-bottom: 0.5rem;
 }
 
 span.ship-name {
