@@ -116,7 +116,8 @@ h1, h2, h3, h4, h5, b {
 /* Scrollification */
 
 #systemReport, #systemsListContainer, #viewOptions {
-    overflow-y: scroll;
+    overflow-y: auto;
+    height: fit-content;
 }
 
 #settingsModal, #spectatorModal, #aboutModal {
