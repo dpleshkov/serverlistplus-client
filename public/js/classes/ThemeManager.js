@@ -130,7 +130,7 @@ class ThemeManager {
 			for (let theme of self.options.customList) {
 				let opt = document.createElement("option");
 				opt.setAttribute("value", i++);
-				opt.innerText = theme.name || "Unamed theme";
+				opt.innerText = theme.name || "Unnamed theme";
 				customThemeSelector.appendChild(opt);
 			}
 			customThemeSelector.innerHTML += `<option value="${i}">Add theme...</option>`;
