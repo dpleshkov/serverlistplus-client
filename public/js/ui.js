@@ -26,7 +26,7 @@ document.getElementById("shareCustomGameCard").addEventListener("click", () => {
     shareGameModal.show();
     document.getElementById("customGameLinkInput").value = "";
     document.getElementById("customGameLinkInput").focus();
-})
+});
 
 /* Responsive Scroll Height Setting */
 let _scrollify = function() {

@@ -435,14 +435,14 @@ class Spectator {
                 }
 
                 firstSpan.setAttribute("style", "font-size: 0.65rem; overflow: hidden; white-space: nowrap; color: inherit; cursor: inherit;");
-                firstSpan.setAttribute("class", "float-start");
+                firstSpan.setAttribute("class", "ship-name");
                 //firstSpan.innerHTML += image;
                 firstSpan.innerHTML += `&nbsp`;
                 firstSpan.innerHTML += player.profile.player_name.replace("<", "&lt").replace(">", "&gt");
                 col.appendChild(firstSpan);
 
                 col.insertAdjacentHTML("beforeend", `
-                    <span class="float-end" style="font-size: 0.65rem; color: inherit; cursor: inherit;">
+                    <span class="ship-score" style="font-size: 0.65rem; color: inherit; cursor: inherit;">
                         ${player.score}
                         ${image}
                     </span>
@@ -457,7 +457,6 @@ class Spectator {
                 });
 
                 column.appendChild(col);
-                column.insertAdjacentHTML('beforeend', "<br>");
             }
 
             column.scrollTop = scrollAmounts[i];

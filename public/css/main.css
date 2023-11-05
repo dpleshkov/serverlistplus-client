@@ -116,7 +116,8 @@ h1, h2, h3, h4, h5, b {
 /* Scrollification */
 
 #systemReport, #systemsListContainer, #viewOptions {
-    overflow-y: scroll;
+    overflow-y: auto;
+    height: fit-content;
 }
 
 #settingsModal, #spectatorModal, #aboutModal {
@@ -130,6 +131,26 @@ h1, h2, h3, h4, h5, b {
 
 .analysis-col::-webkit-scrollbar {
     display: none;
+}
+/* Player box */
+.player-view-box {
+    display: flex;
+    align-items: center;
+    overflow: auto hidden;
+    margin-bottom: 0.5rem;
+}
+
+span.ship-name {
+    width: 70%;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+span.ship-score {
+    width: 30%;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto hidden;
 }
 
 /* Player Highlighting */
