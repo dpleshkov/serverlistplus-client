@@ -131,6 +131,26 @@ h1, h2, h3, h4, h5, b {
 .analysis-col::-webkit-scrollbar {
     display: none;
 }
+/* Player box */
+.player-view-box {
+    display: flex;
+    align-items: center;
+    overflow: auto hidden;
+    margin-bottom: 5%;
+}
+
+span.ship-name {
+    width: 70%;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+span.ship-score {
+    width: 30%;
+    text-align: right;
+    white-space: nowrap;
+    overflow: auto hidden;
+}
 
 /* Player Highlighting */
 

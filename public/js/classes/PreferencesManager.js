@@ -5,7 +5,9 @@ class PreferencesManager {
         self.onchange = function() {};
         self.changeEventListeners = new Set();
 
+        self.themeManager = new ThemeManager(self);
         self.preferences = self.loadPreferences();
+		self.themeManager.validateOptions(false, true, false);
         self.renderPreferences(self.preferences);
 
         /* Mode Select Bindings */
@@ -40,12 +42,7 @@ class PreferencesManager {
             self.savePreferences(self.preferences);
         });
 
-        /* Theme Select Binding */
-        document.getElementById("preferenceTheme").addEventListener("change", () => {
-            self.preferences.theme = document.getElementById("preferenceTheme").value;
-            document.getElementById("themeStylesheet").setAttribute("href", self.preferences.theme);
-            self.savePreferences(self.preferences);
-        });
+		self.themeManager.initialize();
     }
 
     on(eventName, handler) {
@@ -57,25 +54,22 @@ class PreferencesManager {
     }
 
     loadPreferences() {
-        let storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
+		const self = this;
+        let storedPreferences;
+        try {
+            storedPreferences = JSON.parse(window.localStorage.getItem("preferences"));
+        } catch (e) {}
         // Re-write cached root-relative theme to be relative path instead
         if (!storedPreferences) {
-            let theme = "./css/themes/default_dark.css";
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                theme = "./css/themes/default_dark.css";
-            }
             let preferences = {
                 region: "America",
                 modes: ["team", "survival", "deathmatch", "modding", "custom"],
-                theme: theme,
                 copyFullLinks: false,
-                centerMapOnAsteroids: false
+                centerMapOnAsteroids: false,
+                theme: self.themeManager.getDefaultOptions()
             }
             window.localStorage.setItem("preferences", JSON.stringify(preferences));
             return preferences;
-        } else if (storedPreferences.theme && storedPreferences.theme.startsWith("/")) {
-            storedPreferences.theme = "." + storedPreferences.theme;
-            this.savePreferences(storedPreferences);
         }
         return storedPreferences;
     }
@@ -128,9 +122,6 @@ class PreferencesManager {
         /* Center Map On Asteroids */
         document.getElementById("preferenceCenterMapAsteroids").checked = preferences.centerMapOnAsteroids;
 
-        /* Theme */
-        document.getElementById("preferenceTheme").value = preferences.theme;
-        document.getElementById("themeStylesheet").setAttribute("href", preferences.theme);
-
+        this.themeManager.apply();
     }
 }

@@ -43,8 +43,10 @@
     <!-- Site CSS -->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/themes/default_light.css" id="themeStylesheet">
+    <style id="customThemeStylesheet"></style>
 
     <!-- Site JS Libraries -->
+    <script type="text/javascript" src="./js/classes/ThemeManager.js"></script>
     <script type="text/javascript" src="./js/classes/PreferencesManager.js"></script>
     <script type="text/javascript" src="./js/classes/SimStatusListProvider.js"></script>
     <script type="text/javascript" src="./js/translation.js"></script>
@@ -75,6 +77,7 @@
     <%- include("./index/spectatorModal") %>
 <% } %>
 <%- include("./index/shareGameModal") %>
+<%- include("./index/customThemeModal") %>
 <div class="container" data-nosnippet>
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
