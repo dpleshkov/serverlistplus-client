@@ -6,6 +6,11 @@ class ThemeManager {
 			keyboard: true,
 			backdrop: true
 		});
+		self.themeEditor = CodeMirror.fromTextArea(document.querySelector("#customThemeText"), {
+			mode: "css",
+			lineNumbers: true,
+			theme: "monokai"
+		});
 		self.preferencesManager = preferencesManager;
 	}
 
@@ -196,8 +201,11 @@ class ThemeManager {
 			let theme = self.options.customList[self.options.customValue];
 			if (theme == null) return;
 			self.editorModal.show();
+			self.themeEditor.setValue(theme.code || "");
+			self.themeEditor.refresh();
+			self.themeEditor.focus();
+    		self.themeEditor.setCursor(self.themeEditor.lineCount(), 0);
 			document.querySelector("#customThemeName").value = theme.name || "";
-			document.querySelector("#customThemeText").value = theme.code || "";
 		});
 
 		document.querySelector("#customThemeDeleteButton").addEventListener("click", function () {
@@ -220,26 +228,12 @@ class ThemeManager {
 			}
 		});
 
-		document.querySelector("#customThemeText").addEventListener("input", function () {
+		self.themeEditor.on("change", function () {
 			if (!self.onCustom()) return;
 			let theme = self.options.customList[self.options.customValue];
 			if (theme) {
-				theme.code = this.value;
+				theme.code = self.themeEditor.getValue();
 				self.validateOptions(true, false, true);
-			}
-		});
-
-		document.querySelector("#customThemeText").addEventListener('keydown', function(e) {
-			if (e.key == 'Tab') {
-				e.preventDefault();
-				var start = this.selectionStart;
-				var end = this.selectionEnd;
-		
-				// set textarea value to: text before caret + tab + text after caret
-				this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
-		
-				// put caret at right position again
-				this.selectionStart = this.selectionEnd = start + 1;
 			}
 		});
 
