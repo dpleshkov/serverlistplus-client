@@ -16,14 +16,14 @@ class ThemeManager {
 
 	themes = [
 		{ name: "Light", link: "./css/themes/default_light.css" },
-    	{ name: "Dark", link: "./css/themes/default_dark.css" },
-        { name: "1337", author: "dankdmitron", link: "./css/themes/dankdmitron/1337.css" },
-        { name: "Starblast", author: "Bhpsngum", link: "./css/themes/bhpsngum/starblast.css" },
-        { name: "Blue", author: "Caramel", link: "./css/themes/caramel/blue.css" },
-        { name: "Caramel", author: "Caramel", link: "./css/themes/caramel/caramel.css" },
-        { name: "Pink-Purple", author: "Caramel", link: "./css/themes/caramel/pink-purple.css" },
-        { name: "Purple", author: "Caramel", link: "./css/themes/caramel/purple.css" },
-        { name: "Elegant", author: "Halcyon", link: "./css/themes/halcyon/elegant.css" }
+		{ name: "Dark", link: "./css/themes/default_dark.css" },
+		{ name: "1337", author: "dankdmitron", link: "./css/themes/dankdmitron/1337.css" },
+		{ name: "Starblast", author: "Bhpsngum", link: "./css/themes/bhpsngum/starblast.css" },
+		{ name: "Blue", author: "Caramel", link: "./css/themes/caramel/blue.css" },
+		{ name: "Caramel", author: "Caramel", link: "./css/themes/caramel/caramel.css" },
+		{ name: "Pink-Purple", author: "Caramel", link: "./css/themes/caramel/pink-purple.css" },
+		{ name: "Purple", author: "Caramel", link: "./css/themes/caramel/purple.css" },
+		{ name: "Elegant", author: "Halcyon", link: "./css/themes/halcyon/elegant.css" }
 	];
 
 	determineThemeTone () {
@@ -204,7 +204,7 @@ class ThemeManager {
 			self.themeEditor.setValue(theme.code || "");
 			self.themeEditor.refresh();
 			self.themeEditor.focus();
-    		self.themeEditor.setCursor(self.themeEditor.lineCount(), 0);
+			self.themeEditor.setCursor(self.themeEditor.lineCount(), 0);
 			document.querySelector("#customThemeName").value = theme.name || "";
 		});
 
