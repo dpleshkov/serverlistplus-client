@@ -72,6 +72,14 @@ class SystemListManager {
                     });
                 }
 
+                card.onmouseover = () => {
+                    // Pre-render and pre-fetch player list to make it "appear" quicker
+
+                    self.systemReportManager.prefetch(() => {
+                        return self.systemsById[system.id.toString()];
+                    });
+                }
+
                 self.systemListElement.prepend(card);
 
                 self.systemCards[system.id.toString()] = card;

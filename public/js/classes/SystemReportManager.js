@@ -3,6 +3,30 @@ class SystemReportManager {
         const self = this;
 
         self.preferencesManager = preferencesManager;
+
+        self.prefetchedInfo = {};
+    }
+
+    prefetch(systemFetcher) {
+        const self = this;
+
+        let system = systemFetcher();
+
+        let maybePrefetchedInfo = self.prefetchedInfo[`${system.id}@${system.address}`];
+        if (!maybePrefetchedInfo || (!maybePrefetchedInfo.inProgress && Date.now()-maybePrefetchedInfo.timestamp > 10000)) {
+            self.prefetchedInfo[`${system.id}@${system.address}`] = {
+                inProgress: true,
+                timestamp: 0,
+                data: new Promise(async(resolve) => {
+                    fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}@${system.address}`).then(async(response) => {
+                        let info = await response.json();
+                        self.prefetchedInfo[`${system.id}@${system.address}`].inProgress = false;
+                        self.prefetchedInfo[`${system.id}@${system.address}`].timestamp = Date.now();
+                        resolve(info);
+                    })
+                })
+            }
+        }
     }
 
     showInfo(systemFetcher) {
@@ -57,8 +81,10 @@ class SystemReportManager {
             document.getElementById("SR_PlayerList").innerText = "";
 
             // async fetch game info from static api
-            fetch(`${window.siteConfig["static-api-provider"]}status/${system.id}@${system.address}`).then(async(response) => {
-                let info = await response.json();
+            if (!self.prefetchedInfo[`${system.id}@${system.address}`]) self.prefetch(systemFetcher);
+
+            self.prefetchedInfo[`${system.id}@${system.address}`].data.then((info) => {
+                //let info = await response.json();
                 if (info && info.players) {
 
                     let playerList = [];
