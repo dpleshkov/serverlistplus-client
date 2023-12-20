@@ -70,6 +70,7 @@ class SystemReportManager {
             document.getElementById("systemReportLink").classList.remove("rounded-end");
 
             document.getElementById("systemSpectateButton").onclick = () => {
+                if (!window.activeSpectator || window.activeSpectator.destroyed) window.activeSpectator = new Spectator(`${system.id}@${system.address}`);
                 Spectator.show();
             }
 
