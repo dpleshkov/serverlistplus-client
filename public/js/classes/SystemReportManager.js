@@ -64,11 +64,12 @@ class SystemReportManager {
 
         document.getElementById("systemSpectateButton").style.display = "none";
         if (window.siteConfig.mode === "live" && (system.mode !== "invasion")) {
+            if (window.activeSpectator !== undefined) window.activeSpectator.destroy();
+            window.activeSpectator = new Spectator(`${system.id}@${system.address}`);
+
             document.getElementById("systemReportLink").classList.remove("rounded-end");
 
             document.getElementById("systemSpectateButton").onclick = () => {
-                if (window.activeSpectator !== undefined) window.activeSpectator.destroy();
-                window.activeSpectator = new Spectator(`${system.id}@${system.address}`);
                 Spectator.show();
             }
 
