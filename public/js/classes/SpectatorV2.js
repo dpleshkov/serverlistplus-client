@@ -427,10 +427,55 @@ class Spectator {
                 }
 
                 let image = "";
+
+                const getShipStr = (ship, shipFolder) => {
+                    const vanillaTranslation = {
+                        101:"\uf100",
+                        201:"\uf101",
+                        202:"\uf102",
+                        301:"\uf103",
+                        302:"\uf104",
+                        303:"\uf105",
+                        304:"\uf106",
+                        401:"\uf107",
+                        402:"\uf108",
+                        403:"\uf109",
+                        404:"\uf10a",
+                        405:"\uf10b",
+                        406:"\uf10c",
+                        501:"\uf10d",
+                        502:"\uf10e",
+                        503:"\uf10f",
+                        504:"\uf110",
+                        505:"\uf111",
+                        506:"\uf112",
+                        507:"\uf113",
+                        508:"\uf114",
+                        601:"\uf115",
+                        602:"\uf116",
+                        603:"\uf117",
+                        604:"\uf118",
+                        605:"\uf119",
+                        606:"\uf11a",
+                        607:"\uf11b",
+                        608:"\uf11c",
+                        609:"\uf11d",
+                        701:"\uf11e",
+                        702:"\uf11f",
+                        703:"\uf120",
+                        704:"\uf121",
+                    }
+                    if (shipFolder === "vanilla") {
+                        return vanillaTranslation[ship];
+                    } else {
+                        return String.fromCharCode(ship);
+                    }
+                }
+
                 if (displayShips && doImageFilter) {
-                    image = `<span class="ship-icon ship-icon-${shipFolder}" style="color: hsl(${player.profile.hue}, 100%, 40%)">${String.fromCharCode(player.ship)}</span>`;
+                    image = `<span class="ship-icon ship-icon-${shipFolder}" style="color: hsl(${player.profile.hue}, 100%, 40%)">${getShipStr(player.ship, shipFolder)}</span>`;
                 } else if (displayShips) {
-                    image = `<span class="ship-icon ship-icon-${shipFolder}">${String.fromCharCode(player.ship)}</span>`;
+                    image = `<span class="ship-icon ship-icon-${shipFolder}">${getShipStr(player.ship, shipFolder)}</span>`;
                 } else if (!displayShips && doImageFilter) {
                 }
 
