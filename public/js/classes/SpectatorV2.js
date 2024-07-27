@@ -589,7 +589,7 @@ class Spectator {
         for (let team of self.modeInfo.mode.teams) {
             let phase = team.station.phase;
             let radius = (Math.sqrt(2)/2) * canvas.width / 2;
-            let steps = (self.modeInfo.servertime + (Date.now() - self.modeInfo.obtained)) / 1000 * 60;
+            let steps = (self.modeInfo.servertime + (Date.now() - self.modeInfo.obtainedAt)) / 1000 * 60;
             // let theta = ((360/216000 * steps) / 180 * Math.PI) + phase;
             let theta = steps / 60 / 3600 % 1 * Math.PI * 2;
             let x = radius * Math.cos(theta + phase);
