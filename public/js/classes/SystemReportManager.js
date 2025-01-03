@@ -55,6 +55,7 @@ class SystemReportManager {
         }
 
         document.getElementById("systemReportLink").setAttribute("href", systemURL);
+        document.getElementById("systemReportLink").setAttribute("target", "_blank");
 
         document.getElementById("systemReport").style.display = "";
 
